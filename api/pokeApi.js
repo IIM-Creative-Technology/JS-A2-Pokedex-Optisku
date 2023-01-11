@@ -1,13 +1,20 @@
 let pokemons = []
 let url = "https://pokeapi.co/api/v2/pokemon"
-let currentGen = 1
-let pkm_nbr_1ere = 151
+let currentGen = "gen1"
+
 let offset = 0
 let nbr_affiche = 20
+
+let pkm_nbr_1ere = 151
 let pkm_nbr_2eme = 100
+let pkm_nbr_3eme = 135
+let pkm_nbr_4eme = 107
+let pkm_nbr_5eme = 156
+let pkm_nbr_6eme = 72
 
 let first_gen = document.querySelector('.first-gen')
 let nextGenButton = document.querySelector('.next-gen')
+let generation = document.querySelector('.generation')
 
 function resetInnerHTML() {
     first_gen.innerHTML = ``
@@ -15,35 +22,50 @@ function resetInnerHTML() {
 
 nextGenButton.addEventListener("click", function(){
     resetInnerHTML()
-    if(currentGen == 1) {
-        document.querySelector('.title').innerText = "2eme gen"
-        currentGen = 2
-        fetchPokemons()
-    }else if (currentGen == 2) {
-        document.querySelector('.title').innerText = "1ere gen"
-        currentGen = 1
-        fetchPokemons()
-    }
+    document.querySelector('.title').innerText = generation.value
+    fetchPokemons()
 })
 
 const fetchPokemons = async () => {
-    console.log(offset)
-    if(currentGen == 1){
+    if(generation.value == "gen1"){
         pokemons = []
         for(let i = 1; i <= pkm_nbr_1ere; i++) {
             await getAllPokemon(i)
         }
-    }else {
+    }else if (generation.value == "gen2") {
         pokemons = []
         for(let i = pkm_nbr_1ere + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme; i++) {
-
+            await getAllPokemon(i)
+        }
+    }else if (generation.value == "gen3") {
+        pokemons = []
+        console.log('init')
+        for(let i = pkm_nbr_1ere + pkm_nbr_2eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme; i++) {
+            await getAllPokemon(i)
+        }
+    }else if (generation.value == "gen4") {
+        pokemons = []
+        console.log('init')
+        for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme; i++) {
+            await getAllPokemon(i)
+        }
+    }else if (generation.value == "gen5") {
+        pokemons = []
+        console.log('init')
+        for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme; i++) {
+            await getAllPokemon(i)
+        }
+    }else if (generation.value == "gen6") {
+        pokemons = []
+        console.log('init')
+        for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme; i++) {
             await getAllPokemon(i)
         }
     }
     pokemons.forEach(pokemon => {
         showPokemon(pokemon)
     })
-    console.log(pokemons[3])
+    // console.log(pokemons[3])
 }
 
 const getAllPokemon = async (id) => {
@@ -59,7 +81,7 @@ const showPokemon = async (pokemon) => {
             `
             <a href="#">
                 <div class="pokemon">
-                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
                     <h2>${pokemon.name}</h2>
                     <div class="types">
                         <h3>${pokemon.types[0].type.name}</h3>
@@ -68,6 +90,12 @@ const showPokemon = async (pokemon) => {
                 </div>
             </a>
             `
+
+        let current = document.querySelector('.' + pokemon.name)
+        console.log(current)
+        current.addEventListener("mouseover", function() {
+            console.log('rererer')
+        })
     }else {
         first_gen.innerHTML +=
             `
