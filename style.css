@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.pokemon {
+    display: flex;
+    gap: 40px;
+    background: grey;
+}
