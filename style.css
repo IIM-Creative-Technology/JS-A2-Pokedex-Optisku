@@ -1,11 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 40px;
 }
 
 .pokemon {
     display: flex;
-    gap: 40px;
+    flex-direction: column;
+    gap: 10px;
     background: grey;
 }
