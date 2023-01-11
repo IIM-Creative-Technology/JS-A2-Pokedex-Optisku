@@ -20,11 +20,32 @@ function resetInnerHTML() {
     first_gen.innerHTML = ``
 }
 
+function getRandomArbitrary(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+let randomBtn = document.querySelector('.random')
+randomBtn.addEventListener('click', function(){
+    let number = getRandomArbitrary(1,721)
+    resetInnerHTML()
+    pokemons = []
+    fetchRandom(number)
+
+})
+// console.log(getRandomArbitrary(1,721))
+
 nextGenButton.addEventListener("click", function(){
     resetInnerHTML()
     document.querySelector('.title').innerText = generation.value
     fetchPokemons()
 })
+
+const fetchRandom = async (id) => {
+    await getAllPokemon(id)
+    pokemons.forEach(pokemon => {
+        console.log('init')
+        showPokemon(pokemon)
+    })
+}
 
 const fetchPokemons = async () => {
     if(generation.value == "gen1"){
@@ -69,7 +90,7 @@ const fetchPokemons = async () => {
 }
 
 const getAllPokemon = async (id) => {
-    // console.log(fetch(`${url}/${id}`))
+    console.log(`${url}/${id}`)
     const result = await fetch(`${url}/${id}`)
     const pokemonAdd = await result.json()
     pokemons.push(pokemonAdd)
