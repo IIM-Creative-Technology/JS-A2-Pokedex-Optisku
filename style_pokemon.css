@@ -1,0 +1,6 @@
+.DamageRelation{
+    display: flex;
+}
+.DamageRelation p{
+    padding: 8px;
+}
