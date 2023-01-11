@@ -1,12 +1,43 @@
 let pokemons = []
 let url = "https://pokeapi.co/api/v2/pokemon"
-let pkm_nbr = 151
+let currentGen = 1
+let pkm_nbr_1ere = 151
+let pkm_nbr_2eme = 100
 
-let container = document.querySelector('.container')
+let first_gen = document.querySelector('.first-gen')
+let nextGenButton = document.querySelector('.next-gen')
+
+function resetInnerHTML() {
+    first_gen.innerHTML = ``
+}
+
+nextGenButton.addEventListener("click", function(){
+    if(currentGen == 1) {
+        document.querySelector('.title').innerText = "2eme gen"
+        currentGen = 2
+        fetchPokemons()
+    }else if (currentGen == 2) {
+        document.querySelector('.title').innerText = "1ere gen"
+        currentGen = 1
+        fetchPokemons()
+    }
+})
 
 const fetchPokemons = async () => {
-    for(let i = 1; i <= pkm_nbr; i++) {
-        await getAllPokemon(i)
+    if(currentGen == 1){
+        pokemons = []
+        resetInnerHTML()
+        for(let i = 1; i <= pkm_nbr_1ere; i++) {
+            await getAllPokemon(i)
+        }
+    }else {
+        console.log('in it')
+        pokemons = []
+        resetInnerHTML()
+        for(let i = 1; i <= pkm_nbr_2eme; i++) {
+
+            await getAllPokemon(i+151)
+        }
     }
     pokemons.forEach(pokemon => {
         showPokemon(pokemon)
@@ -23,7 +54,7 @@ const getAllPokemon = async (id) => {
 
 const showPokemon = async (pokemon) => {
     if(typeof pokemon.types[1] != "undefined"){ 
-        container.innerHTML += 
+        first_gen.innerHTML += 
             `
             <div class="pokemon">
                 <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
@@ -35,7 +66,7 @@ const showPokemon = async (pokemon) => {
             </div>
             `
     }else {
-        container.innerHTML +=
+        first_gen.innerHTML +=
             `
             <div class="pokemon">
                 <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
