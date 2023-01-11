@@ -12,6 +12,7 @@ function resetInnerHTML() {
 }
 
 nextGenButton.addEventListener("click", function(){
+    resetInnerHTML()
     if(currentGen == 1) {
         document.querySelector('.title').innerText = "2eme gen"
         currentGen = 2
@@ -26,17 +27,14 @@ nextGenButton.addEventListener("click", function(){
 const fetchPokemons = async () => {
     if(currentGen == 1){
         pokemons = []
-        resetInnerHTML()
         for(let i = 1; i <= pkm_nbr_1ere; i++) {
             await getAllPokemon(i)
         }
     }else {
-        console.log('in it')
         pokemons = []
-        resetInnerHTML()
-        for(let i = 1; i <= pkm_nbr_2eme; i++) {
+        for(let i = pkm_nbr_1ere + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme; i++) {
 
-            await getAllPokemon(i+151)
+            await getAllPokemon(i)
         }
     }
     pokemons.forEach(pokemon => {
@@ -56,25 +54,29 @@ const showPokemon = async (pokemon) => {
     if(typeof pokemon.types[1] != "undefined"){ 
         first_gen.innerHTML += 
             `
-            <div class="pokemon">
-                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-                <h2>${pokemon.name}</h2>
-                <div class="types">
-                    <h3>${pokemon.types[0].type.name}</h3>
-                    <h3>${pokemon.types[1].type.name}</h3>
+            <a href="#">
+                <div class="pokemon">
+                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+                    <h2>${pokemon.name}</h2>
+                    <div class="types">
+                        <h3>${pokemon.types[0].type.name}</h3>
+                        <h3>${pokemon.types[1].type.name}</h3>
+                    </div>
                 </div>
-            </div>
+            </a>
             `
     }else {
         first_gen.innerHTML +=
             `
-            <div class="pokemon">
-                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-                <h2>${pokemon.name}</h2>
-                <div class="types">
-                    <h3>${pokemon.types[0].type.name}</h3>
+            <a href="#">
+                <div class="pokemon">
+                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+                    <h2>${pokemon.name}</h2>
+                    <div class="types">
+                        <h3>${pokemon.types[0].type.name}</h3>
+                    </div>
                 </div>
-            </div>
+            </a>
             `
     }
 }
