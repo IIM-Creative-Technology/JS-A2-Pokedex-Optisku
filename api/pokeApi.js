@@ -2,6 +2,8 @@ let pokemons = []
 let url = "https://pokeapi.co/api/v2/pokemon"
 let currentGen = 1
 let pkm_nbr_1ere = 151
+let offset = 0
+let nbr_affiche = 20
 let pkm_nbr_2eme = 100
 
 let first_gen = document.querySelector('.first-gen')
@@ -25,6 +27,7 @@ nextGenButton.addEventListener("click", function(){
 })
 
 const fetchPokemons = async () => {
+    console.log(offset)
     if(currentGen == 1){
         pokemons = []
         for(let i = 1; i <= pkm_nbr_1ere; i++) {
@@ -80,4 +83,20 @@ const showPokemon = async (pokemon) => {
             `
     }
 }
+
 fetchPokemons()
+
+function wait(ms) {
+    return new Promise( resolve => {
+
+        setTimeout(() => {resolve('')}, ms )
+    })
+}
+
+// window.onscroll = function() {
+//     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+//         offset += 20
+//         fetchPokemons()
+//     }
+//     wait(1000)
+// };
