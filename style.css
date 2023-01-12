@@ -10,7 +10,7 @@ body{
     background-attachment: fixed;
 }
 
-.container {
+.pokeContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 40px;
