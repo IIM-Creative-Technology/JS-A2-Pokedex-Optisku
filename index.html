@@ -14,23 +14,25 @@
         <form action="/action_page.php">
             <input type="text" placeholder="Search Pokémon..." name="search">
           </form>
+
+        <form id="header-tri" action="" method="get">
+            <select class="generation" onchange="chooseGen(this.val)">
+                <option value="gen1" selected>Choose a generation</option>
+                <option value="gen1">1st</option>
+                <option value="gen2">2nd</option>
+                <option value="gen3">3rd</option>
+                <option value="gen4">4th</option>
+                <option value="gen5">5th</option>
+                <option value="gen6">6th</option>
+                <option value="gen7">7th</option>
+                <option value="gen8">8th</option>
+                <option value="gen9">9th</option>
+            </select>
+        </form>
+       
+        <button class="random">Get Random</button>
     </header>
 
-    <select class="generation">
-        <option value="gen1" selected>Choose a generation</option>
-        <option value="gen1">1st</option>
-        <option value="gen2">2nd</option>
-        <option value="gen3">3rd</option>
-        <option value="gen4">4th</option>
-        <option value="gen5">5th</option>
-        <option value="gen6">6th</option>
-        <option value="gen7">7th</option>
-        <option value="gen8">8th</option>
-        <option value="gen9">9th</option>
-    </select>
-   
-    <button class="next-gen">Next Gen</button>
-    <button class="random">Get Random</button>
     <H1 class="title">Gen1</H1>
     <div class="container first-gen">
 

@@ -13,7 +13,6 @@ let pkm_nbr_5eme = 156
 let pkm_nbr_6eme = 72
 
 let first_gen = document.querySelector('.first-gen')
-let nextGenButton = document.querySelector('.next-gen')
 let generation = document.querySelector('.generation')
 
 function resetInnerHTML() {
@@ -33,11 +32,18 @@ randomBtn.addEventListener('click', function(){
 })
 // console.log(getRandomArbitrary(1,721))
 
-nextGenButton.addEventListener("click", function(){
-    resetInnerHTML()
-    document.querySelector('.title').innerText = generation.value
-    fetchPokemons()
-})
+
+function chooseGen(val) {
+    if(this.value != 0){ 
+        
+        resetInnerHTML()
+        document.querySelector('.title').innerText = generation.value
+        fetchPokemons()
+
+        this.form.submit()
+    }
+}
+
 
 const fetchRandom = async (id) => {
     await getAllPokemon(id)
@@ -100,8 +106,9 @@ const showPokemon = async (pokemon) => {
     if(typeof pokemon.types[1] != "undefined"){ 
         first_gen.innerHTML += 
             `
-            <a href="#">
-                <div class="pokemon">
+            <form action="pokemon.html" method="get">
+                <input id="id" name="id" type="hidden" value=${pokemon.id}>
+                <div class="pokemon" onclick="javascript:this.parentNode.submit()">
                     <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
                     <h2>${pokemon.name}</h2>
                     <div class="types">
@@ -109,7 +116,7 @@ const showPokemon = async (pokemon) => {
                         <h3>${pokemon.types[1].type.name}</h3>
                     </div>
                 </div>
-            </a>
+            </form>
             `
 
         let current = document.querySelector('.' + pokemon.name)
@@ -120,15 +127,16 @@ const showPokemon = async (pokemon) => {
     }else {
         first_gen.innerHTML +=
             `
-            <a href="#">
-                <div class="pokemon">
-                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+            <form action="pokemon.html" method="get">
+            <input id="id" name="id" type="hidden" value=${pokemon.id}>
+                <div class="pokemon" onclick="javascript:this.parentNode.submit()">
+                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
                     <h2>${pokemon.name}</h2>
                     <div class="types">
                         <h3>${pokemon.types[0].type.name}</h3>
                     </div>
                 </div>
-            </a>
+            </form>
             `
     }
 }
