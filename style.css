@@ -10,6 +10,18 @@ body{
     background-attachment: fixed;
 }
 
+.teams{
+    background-color: #195b769e;
+    border-radius: 0 25px 25px 0;
+}
+
+.teamDiv{
+    background: #195b769e;
+}
+.teamDiv:hover{
+    background: #1890bf9e;
+}
+
 .pokeContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -17,6 +29,7 @@ body{
 }
 .pageContent{
     background-color: #195b769e;
+    border-radius: 25px 0 0 25px;
 }
 .pokemon {
     cursor: pointer;
@@ -26,4 +39,7 @@ body{
     flex-direction: column;
     gap: 10px;
     background: #195b769e;
+}
+.pokemon:hover {
+    background: #1890bf9e;
 }

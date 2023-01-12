@@ -41,7 +41,7 @@ function chooseGen(val) {
     genTitle.innerText = generation.value
     fetchPokemons()
     pokeContainer.style.display = 'grid'
-    pokeContainer.style.width = '80vw'
+    pokeContainer.style.width = '60vw'
     this.form.submit()
 }
 
