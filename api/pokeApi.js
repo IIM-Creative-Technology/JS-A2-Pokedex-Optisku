@@ -5,7 +5,7 @@ let currentGen = "gen1"
 let offset = 0
 let nbr_affiche = 5
 
-let pkm_nbr_1ere = 5
+let pkm_nbr_1ere = 151
 let pkm_nbr_2eme = 100
 let pkm_nbr_3eme = 135
 let pkm_nbr_4eme = 107
@@ -102,7 +102,7 @@ const getAllPokemon = async (id) => {
     pokemons.push(pokemonAdd)
 }
 
-const showPokemon = async (pokemon) => {
+/*const showPokemon = async (pokemon) => {
     if(typeof pokemon.types[1] != "undefined"){ 
         first_gen.innerHTML += 
             `
@@ -133,6 +133,19 @@ const showPokemon = async (pokemon) => {
             </form>
             `
     }
+}*/
+
+const showPokemon = async (pokemon) => {
+    first_gen.innerHTML += 
+        `
+        <form action="pokemon.html" method="get">
+            <input id="id" name="id" type="hidden" value=${pokemon.id}>
+            <div class="pokemon flex flex-col items-center" onclick="javascript:this.parentNode.submit()">
+                <h2>N°${pokemon.id} ${pokemon.name}</h2>
+                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
+            </div>
+        </form>
+        `
 }
 
 const changeToShiny = async (pokemons) => {
