@@ -15,8 +15,11 @@ body{
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 40px;
 }
-
+.pageContent{
+    background-color: #195b769e;
+}
 .pokemon {
+    cursor: pointer;
     -webkit-clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
     clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
     display: flex;
