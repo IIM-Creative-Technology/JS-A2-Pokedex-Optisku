@@ -49,6 +49,7 @@ const fetchRandom = async (id) => {
         console.log('init')
         showPokemon(pokemon)
     })
+    changeToShiny(pokemons)
 }
 
 const fetchPokemons = async () => {
