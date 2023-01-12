@@ -3,9 +3,9 @@ let url = "https://pokeapi.co/api/v2/pokemon"
 let currentGen = "gen1"
 
 let offset = 0
-let nbr_affiche = 20
+let nbr_affiche = 5
 
-let pkm_nbr_1ere = 151
+let pkm_nbr_1ere = 5
 let pkm_nbr_2eme = 100
 let pkm_nbr_3eme = 135
 let pkm_nbr_4eme = 107
@@ -35,11 +35,9 @@ randomBtn.addEventListener('click', function(){
 
 function chooseGen(val) {
     if(this.value != 0){ 
-        
         resetInnerHTML()
         document.querySelector('.title').innerText = generation.value
         fetchPokemons()
-
         this.form.submit()
     }
 }
@@ -92,6 +90,7 @@ const fetchPokemons = async () => {
     pokemons.forEach(pokemon => {
         showPokemon(pokemon)
     })
+    changeToShiny(pokemons)
     // console.log(pokemons[3])
 }
 
@@ -118,17 +117,11 @@ const showPokemon = async (pokemon) => {
                 </div>
             </form>
             `
-
-        let current = document.querySelector('.' + pokemon.name)
-        console.log(current)
-        current.addEventListener("mouseover", function() {
-            console.log('rererer')
-        })
     }else {
         first_gen.innerHTML +=
             `
             <form action="pokemon.html" method="get">
-            <input id="id" name="id" type="hidden" value=${pokemon.id}>
+                <input id="id" name="id" type="hidden" value=${pokemon.id}>
                 <div class="pokemon" onclick="javascript:this.parentNode.submit()">
                     <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
                     <h2>${pokemon.name}</h2>
@@ -139,6 +132,20 @@ const showPokemon = async (pokemon) => {
             </form>
             `
     }
+}
+
+const changeToShiny = async (pokemons) => {
+    console.log(pokemons)
+    pokemons.forEach(pokemon => {
+        let current = document.querySelector("." + pokemon.name)
+        console.log(current)
+        current.addEventListener("mouseenter", function() {
+            current.src = `${pokemon.sprites.front_shiny}`
+        })
+        current.addEventListener("mouseleave", function() {
+            current.src = `${pokemon.sprites.front_default}`
+        })
+    })
 }
 
 fetchPokemons()
