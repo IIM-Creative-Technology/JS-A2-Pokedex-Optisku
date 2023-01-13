@@ -2,6 +2,8 @@ let pokemons = []
 let url = "https://pokeapi.co/api/v2/pokemon"
 let currentGen = "gen1"
 let genTitle = document.querySelector('.title')
+let pokeContainer = document.querySelector('.pokeContainer')
+let pageContent = document.querySelector('.pageContent')
 
 let offset = 0
 let nbr_affiche = 5
@@ -35,12 +37,12 @@ randomBtn.addEventListener('click', function(){
 
 
 function chooseGen(val) {
-    if(this.value != 0){ 
-        resetInnerHTML()
-        genTitle.innerText = generation.value
-        fetchPokemons()
-        this.form.submit()
-    }
+    resetInnerHTML()
+    genTitle.innerText = generation.value
+    fetchPokemons()
+    pokeContainer.style.display = 'grid'
+    pokeContainer.style.width = '60vw'
+    this.form.submit()
 }
 
 
@@ -50,6 +52,9 @@ const fetchRandom = async (id) => {
         console.log('init')
         showPokemon(pokemon)
         genTitle.innerText = pokemon.name
+        pokeContainer.style.display = 'block'
+        pokeContainer.style.width = '20%'
+
     })
     changeToShiny(pokemons)
 }
@@ -180,3 +185,16 @@ function wait(ms) {
 //     }
 //     wait(1000)
 // };
+
+
+const pressed = []
+const secretCode = 'battle!'
+window.addEventListener('keyup', (e) => {
+  console.log(e.key)
+  pressed.push(e.key)
+  pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length)
+  if (pressed.join('').includes(secretCode)) {
+    window.location.href ="https://play.pokemonshowdown.com/"
+  }
+})
+
