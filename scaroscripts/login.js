@@ -10,8 +10,8 @@ console.log(utilisateurs);
 
 function inscription() {
   // récupération des valeurs saisies dans le formulaire
-  var sign_name = document.getElementById("sign_name").value;
-  var sign_password = document.getElementById("sign_password").value;
+  let sign_name = document.getElementById("sign_name").value;
+  let sign_password = document.getElementById("sign_password").value;
 
   // vérification que l'utilisateur n'est pas déjà inscrit
   /*if (utilisateurs.indexOf(sign_name) != -1) {
@@ -28,7 +28,7 @@ function inscription() {
 }
 
   // création de l'objet utilisateur
-  var utilisateur = {
+  let utilisateur = {
     "name": sign_name,
     "password": sign_password,
     "equipes" : {
@@ -53,11 +53,11 @@ function inscription() {
 
 function connexion() {
   // récupération des valeurs saisies dans le formulaire
-  var log_name = document.getElementById("log_name").value;
-  var log_password = document.getElementById("log_password").value;
+  let log_name = document.getElementById("log_name").value;
+  let log_password = document.getElementById("log_password").value;
 
   // vérification que l'utilisateur est inscrit
-  var utilisateur = utilisateurs.find(function(user) {
+  let utilisateur = utilisateurs.find(function(user) {
     return user.name === log_name;
   });
   if (utilisateur === undefined) {

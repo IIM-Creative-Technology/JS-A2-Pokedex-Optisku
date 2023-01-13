@@ -38,7 +38,11 @@
         </header>
 
         <main class="flex items-start justify-between">
+
             <div class="teams p-8 w-[20vw] flex flex-col items-center sticky top-0">
+
+                
+
                 <h2 class="font-black text-4xl capitalize mt-4 mb-8">Teams</h2>
                 <div >
                     <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team1" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°1</h3>
@@ -68,32 +72,31 @@
 
         <div class="flex-col">
 
-
             <form id="form-inscription">
-    <label for="sign_name">Nom d'utilisateur :</label>
-    <input type="text" id="sign_name" name="sign_name">
-    <br>
-    <label for="sign_password">Mot de passe :</label>
-    <input type="password" id="sign_password" name="sign_password">
-    <br>
-    <button type="button" onclick="inscription()">S'inscrire</button>
-</form>
+                <label for="sign_name">Nom d'utilisateur :</label>
+                <input type="text" id="sign_name" name="sign_name">
+                <br>
+                <label for="sign_password">Mot de passe :</label>
+                <input type="password" id="sign_password" name="sign_password">
+                <br>
+                <button type="button" onclick="inscription()">S'inscrire</button>
+            </form>
 
-<form id="form-connexion">
-    <label for="log_name">Nom d'utilisateur :</label>
-    <input type="text" id="log_name" name="log_name">
-    <br>
-    <label for="log_password">Mot de passe :</label>
-    <input type="password" id="log_password" name="log_password">
-    <br>
-    <button type="button" onclick="connexion()">Se connecter</button>
-</form>
-<div id="nom-utilisateur">
-    Bienvenue, utilisateur non connecté.
-</div>
-<button type="button" onclick="deconnexion()">Se déconnecter</button>
-</div>
-</main>
+            <form id="form-connexion">
+                <label for="log_name">Nom d'utilisateur :</label>
+                <input type="text" id="log_name" name="log_name">
+                <br>
+                <label for="log_password">Mot de passe :</label>
+                <input type="password" id="log_password" name="log_password">
+                <br>
+                <button type="button" onclick="connexion()">Se connecter</button>
+            </form>
+            <div id="nom-utilisateur">
+                Bienvenue, utilisateur non connecté.
+            </div>
+            <button type="button" onclick="deconnexion()">Se déconnecter</button>
+        </div>
+    </main>
 
     
     <script src="scaroscripts/login.js"></script>

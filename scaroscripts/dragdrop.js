@@ -1,37 +1,4 @@
-//let utilisateurs = JSON.parse(localStorage.getItem('utilisateurs')) || [];
 
-//let utilisateurConnecte = JSON.parse(localStorage.getItem('utilisateurConnecte')) || {};
-/*if (utilisateurConnecte.équipe1 === undefined) {
-    console.log('rien');
-    let equipe1 = [{}];
-    utilisateurConnecte.push(equipe1);
-    localStorage.setItem('utilisateurConnecte', JSON.stringify(utilisateurConnecte));
-  }*/
-
-
-// Ajout de l'écouteur d'événement pour le drag-and-drop
-/*document.querySelectorAll(".pokemon").forEach(pokemon => {
-    pokemon.addEventListener("dragstart", function(event) {
-        event.dataTransfer.setData("text/plain", this.dataset.id);
-    });
-});
-// Ajout de l'écouteur d'événement pour déposer un pokémon dans l'équipe
-document.getElementById("team").addEventListener("drop", function(event) {
-    event.preventDefault();
-    
-    var pokemonId = event.dataTransfer.getData("text/plain");
-    // Récupération des informations du pokémon
-    console.log(pokemonId);
-    /*fetch('https://pokeapi.co/api/v2/pokemon/' + pokemonId)
-    .then(response => response.json())
-    .then(pokemon => {
-        // Ajout du pokémon à l'équipe
-        var li = document.createElement("li");
-        li.classList.add("pokemon");
-        li.innerHTML = pokemon.name;
-        document.getElementById("team").appendChild(li);
-    });
-});*/
 function dragstart_handler(ev) {
     console.log(ev);
 
@@ -120,7 +87,7 @@ function showPokeTeam(numb){
         .then(response => response.json())
         .then(pokemon => {
         // Ajout du pokémon à l'équipe
-            var li = document.createElement("li");
+            let li = document.createElement("li");
             li.classList.add("pokemon");
             li.innerHTML = pokemon.name;
             if(numb === 1){
@@ -143,12 +110,49 @@ function showPokeTeam(numb){
     }
 
 }
+
+function showAllPokeTeam(){
+    let i = 1;
+    while(i <= 6){
+        showPokeTeam(i);
+        i++;
+    }
+}
+function clearPokeTeam(numb){
+    if(numb === 1){
+        team = document.getElementById('team1');
+    }else if(numb === 2){
+        team = document.getElementById('team2');
+    }else if(numb === 3){
+        team = document.getElementById('team3');
+    }else if(numb === 4){
+        team = document.getElementById('team4');
+    }else if(numb === 5){
+        team = document.getElementById('team5');
+    }else if(numb === 6){
+        team = document.getElementById('team6');
+    }
+    
+    team.innerHTML="";
+}
+function clearAllPokeTeam(){
+    let i = 1;
+    while(i <= 6){
+        clearPokeTeam(i);
+        i++;
+    }
+}
+showAllPokeTeam();
+
 function drop_handler(ev) {
     ev.preventDefault();
 
+    let teamNumb = getTeamNumb(ev);
+    //clearAllPokeTeam();
+
     console.log(ev.target.id);
 
-    var pokemonId = ev.dataTransfer.getData("text/plain");
+    let pokemonId = ev.dataTransfer.getData("text/plain");
 
     console.log(pokemonId);
     
@@ -158,7 +162,7 @@ function drop_handler(ev) {
     updateUtilisateur = JSON.parse(updateUtilisateur);
     console.log(updateUtilisateur);
 
-    let teamNumb = getTeamNumb(ev);
+    
     console.log(teamNumb);
     if(teamNumb === 2){
         updateUtilisateur.equipes.equipe2.push(pokemonId);
@@ -180,18 +184,13 @@ function drop_handler(ev) {
 
     localStorage.setItem("utilisateurConnecte", JSON.stringify(updateUtilisateur));
 
-    //showPokeTeam(teamNumb);
+    //showAllPokeTeam();
+    //clearPokeTeam(teamNumb);
     showAllPokeTeam();
 
 }
-function showAllPokeTeam(){
-    let i = 1;
-    while(i <= 6){
-        showPokeTeam(i);
-        i++;
-    }
-}
-showAllPokeTeam();
+
+//showAllPokeTeam();
 
 
 
@@ -213,3 +212,38 @@ const showPokemon = async (pokemon) => {
         </form>
         `
 }*/
+
+//let utilisateurs = JSON.parse(localStorage.getItem('utilisateurs')) || [];
+
+//let utilisateurConnecte = JSON.parse(localStorage.getItem('utilisateurConnecte')) || {};
+/*if (utilisateurConnecte.équipe1 === undefined) {
+    console.log('rien');
+    let equipe1 = [{}];
+    utilisateurConnecte.push(equipe1);
+    localStorage.setItem('utilisateurConnecte', JSON.stringify(utilisateurConnecte));
+  }*/
+
+
+// Ajout de l'écouteur d'événement pour le drag-and-drop
+/*document.querySelectorAll(".pokemon").forEach(pokemon => {
+    pokemon.addEventListener("dragstart", function(event) {
+        event.dataTransfer.setData("text/plain", this.dataset.id);
+    });
+});
+// Ajout de l'écouteur d'événement pour déposer un pokémon dans l'équipe
+document.getElementById("team").addEventListener("drop", function(event) {
+    event.preventDefault();
+    
+    let pokemonId = event.dataTransfer.getData("text/plain");
+    // Récupération des informations du pokémon
+    console.log(pokemonId);
+    /*fetch('https://pokeapi.co/api/v2/pokemon/' + pokemonId)
+    .then(response => response.json())
+    .then(pokemon => {
+        // Ajout du pokémon à l'équipe
+        let li = document.createElement("li");
+        li.classList.add("pokemon");
+        li.innerHTML = pokemon.name;
+        document.getElementById("team").appendChild(li);
+    });
+});*/
