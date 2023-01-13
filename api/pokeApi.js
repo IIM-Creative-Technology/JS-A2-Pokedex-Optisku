@@ -1,11 +1,14 @@
 let pokemons = []
 let url = "https://pokeapi.co/api/v2/pokemon"
 let currentGen = "gen1"
+let genTitle = document.querySelector('.title')
+let pokeContainer = document.querySelector('.pokeContainer')
+let pageContent = document.querySelector('.pageContent')
 
 let offset = 0
 let nbr_affiche = 5
 
-let pkm_nbr_1ere = 151
+let pkm_nbr_1ere = 11
 let pkm_nbr_2eme = 100
 let pkm_nbr_3eme = 135
 let pkm_nbr_4eme = 107
@@ -34,12 +37,12 @@ randomBtn.addEventListener('click', function(){
 
 
 function chooseGen(val) {
-    if(this.value != 0){ 
-        resetInnerHTML()
-        document.querySelector('.title').innerText = generation.value
-        fetchPokemons()
-        this.form.submit()
-    }
+    resetInnerHTML()
+    genTitle.innerText = generation.value
+    fetchPokemons()
+    pokeContainer.style.display = 'grid'
+    pokeContainer.style.width = '60vw'
+    this.form.submit()
 }
 
 
@@ -48,40 +51,44 @@ const fetchRandom = async (id) => {
     pokemons.forEach(pokemon => {
         console.log('init')
         showPokemon(pokemon)
+        genTitle.innerText = pokemon.name
+        pokeContainer.style.display = 'block'
+        pokeContainer.style.width = '20%'
+
     })
     changeToShiny(pokemons)
 }
 
 const fetchPokemons = async () => {
-    if(generation.value == "gen1"){
+    if(generation.value == "1st Generation"){
         pokemons = []
         for(let i = 1; i <= pkm_nbr_1ere; i++) {
             await getAllPokemon(i)
         }
-    }else if (generation.value == "gen2") {
+    }else if (generation.value == "2nd Generation") {
         pokemons = []
         for(let i = pkm_nbr_1ere + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme; i++) {
             await getAllPokemon(i)
         }
-    }else if (generation.value == "gen3") {
+    }else if (generation.value == "3rd Generation") {
         pokemons = []
         console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme; i++) {
             await getAllPokemon(i)
         }
-    }else if (generation.value == "gen4") {
+    }else if (generation.value == "4th Generation") {
         pokemons = []
         console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme; i++) {
             await getAllPokemon(i)
         }
-    }else if (generation.value == "gen5") {
+    }else if (generation.value == "5th Generation") {
         pokemons = []
         console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme; i++) {
             await getAllPokemon(i)
         }
-    }else if (generation.value == "gen6") {
+    }else if (generation.value == "6th Generation") {
         pokemons = []
         console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme; i++) {
@@ -140,7 +147,12 @@ const showPokemon = async (pokemon) => {
         `
         <form action="pokemon.html" method="get">
             <input id="id" name="id" type="hidden" value=${pokemon.id}>
-            <div ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" class="pokemon flex flex-col items-center" onclick="javascript:this.parentNode.submit()">
+
+            
+             <div ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" class="pokemon flex flex-col items-center capitalize font-semibold" onclick="javascript:this.parentNode.submit()">
+
+           
+
                 <h2>N°${pokemon.id} ${pokemon.name}</h2>
                 <img ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" data-id="${pokemon.name}" src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
             </div>
@@ -178,3 +190,16 @@ function wait(ms) {
 //     }
 //     wait(1000)
 // };
+
+
+const pressed = []
+const secretCode = 'battle!'
+window.addEventListener('keyup', (e) => {
+  console.log(e.key)
+  pressed.push(e.key)
+  pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length)
+  if (pressed.join('').includes(secretCode)) {
+    window.location.href ="https://play.pokemonshowdown.com/"
+  }
+})
+
