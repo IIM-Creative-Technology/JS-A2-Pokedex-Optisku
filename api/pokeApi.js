@@ -90,7 +90,7 @@ const fetchPokemons = async () => {
         //     console.log(i)
         //     await getAllPokemon(i)
         // }
-        for(let i = 1; i <= 20; i++) {
+        for(let i = 1; i <= pkm_nbr_1ere; i++) {
             await getAllPokemon(i)
         }
     }else if (generation.value == "2nd Generation") {
@@ -203,17 +203,17 @@ function wait(ms) {
     })
 }
 
-window.onscroll = function() {
-    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-        console.log("avvant" ,offset)
-        offset += 20
-        limite += 20
-        // fetchPokemons()
-        console.log(offset)
-    }
+// window.onscroll = function() {
+//     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+//         console.log("avvant" ,offset)
+//         offset += 20
+//         limite += 20
+//         fetchPokemons()
+//         console.log(offset)
+//     }
 
-    wait(3000)
-};
+//     wait(3000)
+// };
 
 
 // Easter egg
