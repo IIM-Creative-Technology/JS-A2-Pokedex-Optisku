@@ -58,6 +58,20 @@ const fetchRandom = async (id) => {
     changeToShiny(pokemons)
 }
 
+const fetchSearch = async (value) => {
+    resetInnerHTML()
+    pokemons = []
+    await getAllPokemon(value)
+    pokemons.forEach(pokemon => {
+        showPokemon(pokemon)
+
+        genTitle.innerText = pokemon.name
+        pokeContainer.style.display = 'block'
+        pokeContainer.style.width = '20%'
+    })
+    changeToShiny(pokemons)
+}
+
 const fetchPokemons = async () => {
     if(generation.value == "1st Generation"){
         pokemons = []
@@ -122,39 +136,6 @@ const getAllPokemon = async (id) => {
     pokemons.push(pokemonAdd)
 }
 
-/*const showPokemon = async (pokemon) => {
-    if(typeof pokemon.types[1] != "undefined"){ 
-        first_gen.innerHTML += 
-            `
-            <form action="pokemon.html" method="get">
-                <input id="id" name="id" type="hidden" value=${pokemon.id}>
-                <div class="pokemon" onclick="javascript:this.parentNode.submit()">
-                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
-                    <h2>${pokemon.name}</h2>
-                    <div class="types">
-                        <h3>${pokemon.types[0].type.name}</h3>
-                        <h3>${pokemon.types[1].type.name}</h3>
-                    </div>
-                </div>
-            </form>
-            `
-    }else {
-        first_gen.innerHTML +=
-            `
-            <form action="pokemon.html" method="get">
-                <input id="id" name="id" type="hidden" value=${pokemon.id}>
-                <div class="pokemon" onclick="javascript:this.parentNode.submit()">
-                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
-                    <h2>${pokemon.name}</h2>
-                    <div class="types">
-                        <h3>${pokemon.types[0].type.name}</h3>
-                    </div>
-                </div>
-            </form>
-            `
-    }
-}*/
-
 const showPokemon = async (pokemon) => {
     first_gen.innerHTML += 
         `
@@ -207,11 +188,24 @@ function wait(ms) {
 const pressed = []
 const secretCode = 'battle!'
 window.addEventListener('keyup', (e) => {
-  console.log(e.key)
+//   console.log(e.key)
   pressed.push(e.key)
   pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length)
   if (pressed.join('').includes(secretCode)) {
     window.location.href ="https://play.pokemonshowdown.com/"
   }
+})
+
+let searchBar = document.querySelector('.searchBar')
+let searchTextValue = ""
+searchBar.addEventListener("keydown", (e) => {
+    if (e.keyCode >= 65 && e.keyCode <= 90) {
+        searchTextValue += e.key
+    }
+    if( e.keyCode == 8 || e.keyCode == 46 )
+        searchTextValue = searchTextValue.slice(0, -1);
+    if(e.key === "Enter")
+        fetchSearch(searchTextValue)
+    console.log(searchTextValue)
 })
 
