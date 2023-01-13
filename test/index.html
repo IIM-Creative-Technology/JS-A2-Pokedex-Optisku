@@ -12,7 +12,7 @@
 
 <body>
     <header class="flex items-center justify-evenly">
-        <img class="w-[300px]" src="img/pokemon.png" alt="Logo">
+        <img class="w-[300px]" src="../img/pokemon.png" alt="Logo">
         <form action="/action_page.php">
             <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px]" type="text" placeholder="Search Pokémon..." name="search">
           </form>
@@ -73,7 +73,15 @@
 
     </div>
 
+    
+
             <div class="flex-col">
+
+                <div ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team" class="border-2 border-black h-32 w-32">
+                    <p>Team 1</p>
+                    
+                </div>
+
                     <form id="form-inscription">
             <label for="sign_name">Nom d'utilisateur :</label>
             <input type="text" id="sign_name" name="sign_name">
@@ -104,5 +112,6 @@
     
     <script src="login.js"></script>
     <script src="../api/pokeApi.js"></script>
+    <script src="dragdrop.js"></script>
 </body>
 </html>

@@ -1,11 +1,12 @@
 
 
 // tableau pour stocker les utilisateurs inscrits
-var utilisateurs = JSON.parse(localStorage.getItem('utilisateurs')) || [];
+let utilisateurs = JSON.parse(localStorage.getItem('utilisateurs')) || [];
 
-var utilisateurConnecte = JSON.parse(localStorage.getItem('utilisateurConnecte')) || {};
+let utilisateurConnecte = JSON.parse(localStorage.getItem('utilisateurConnecte')) || [];
 
-console.log(utilisateurConnecte.name);
+console.log(utilisateurConnecte);
+console.log(utilisateurs);
 
 //console.log(utilisateurs);
 
@@ -23,7 +24,15 @@ function inscription() {
   // création de l'objet utilisateur
   var utilisateur = {
     "name": sign_name,
-    "password": sign_password
+    "password": sign_password,
+    "equipes" : {
+      "equipe1": [],
+      "equipe2": [],
+      "equipe3": [],
+      "equipe4": [],
+      "equipe5": [],
+      "equipe6": []
+    }
   };
 
   // ajout de l'utilisateur dans le tableau
@@ -57,10 +66,10 @@ function connexion() {
   }
 
 // mise à jour de l'objet pour stocker l'utilisateur connecté
-utilisateurConnecte = utilisateur;
+  utilisateurConnecte = utilisateur;
 
 // Stockage de l'utilisateur connecté dans le local storage
-localStorage.setItem('utilisateurConnecte', JSON.stringify(utilisateurConnecte));
+  localStorage.setItem('utilisateurConnecte', JSON.stringify(utilisateurConnecte));
 
   // mise à jour de l'élément pour afficher le nom de l'utilisateur connecté
   document.getElementById("nom-utilisateur").innerHTML = "Bienvenue, " + utilisateur.name + ".";
