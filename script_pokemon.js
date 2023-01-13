@@ -2,6 +2,8 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 FetchAPIPokemon();
 
+
+
 function FetchAPIPokemon(){
     if(urlParams.has('id')){
         const id = urlParams.get('id')
@@ -12,21 +14,16 @@ function FetchAPIPokemon(){
         GetTypes(response.types);
         Getinfo(response)
         GetStats(response.stats);
-        
-        
-        
+        WeightAndHeight(response)
     })
     };
     
 }
 function Getinfo(response){
+    
     div_info = document.getElementsByClassName('pokemon_info')[0]
-    let id = document.createElement("p")
-    id.textContent += "N°"+response.id
-    div_info.appendChild(id)
-    let nom = document.createElement("p")
-    nom.textContent += response.name
-    div_info.appendChild(nom)
+    let pokeTitle = document.querySelector('.title')
+    pokeTitle.innerText = "N°"+response.id + ' ' + response.name
     
 }
 const changeToShinySingle = async (pokemons) => {
@@ -48,15 +45,66 @@ function DisplayImagePokemon(response){
         newimage.className ='w-60 h-auto pokemon_image_url'
         div_image.appendChild(newimage);
 }
-function GetTypes(response){
-    let div_types = document.getElementsByClassName('pokemon_type')[0]
-    alltypes = document.createElement("p")
+function WeightAndHeight(response){
+    let div_wh = document.getElementsByClassName('pokemon_wh')[0]
+    let weight = document.createElement("p")
+    let height = document.createElement("p")
+    weight.textContent += "Weight: " + response.weight + " lbs"
+    height.textContent += "Height: " + response.height + " ft"
+    div_wh.appendChild(weight)
+    div_wh.appendChild(height)
+}
+function typesColors(e){
+    if(e.textContent == "grass"){
+        e.style.backgroundColor = 'green'
+    } else if (e.textContent == "poison"){
+        e.style.backgroundColor = '#a2589e'
+    }else if (e.textContent == "normal"){
+        e.style.backgroundColor = '#b9b9ad'
+    }else if (e.textContent == "psychic"){
+        e.style.backgroundColor = '#f15ab5'
+    }else if (e.textContent == "ground"){
+        e.style.backgroundColor = '#e8cc56'
+    }else if (e.textContent == "ice"){
+        e.style.backgroundColor = '#a7f3ff'
+    }else if (e.textContent == "fire"){
+        e.style.backgroundColor = '#eb4d40'
+    }else if (e.textContent == "rock"){
+        e.style.backgroundColor = '#caba6d'
+    }else if (e.textContent == "dragon"){
+        e.style.backgroundColor = '#8a78fb'
+    }else if (e.textContent == "water"){
+        e.style.backgroundColor = '#6fb0ff'
+    }else if (e.textContent == "bug"){
+        e.style.backgroundColor = '#c3d000'
+    }else if (e.textContent == "dark"){
+        e.style.backgroundColor = '#705747'
+    }else if (e.textContent == "fighting"){
+        e.style.backgroundColor = '#9c573e'
+    }else if (e.textContent == "ghost"){
+        e.style.backgroundColor = '#7975d6'
+    }else if (e.textContent == "steel"){
+        e.style.backgroundColor = '#c4c2db'
+    }else if (e.textContent == "flying"){
+        e.style.backgroundColor = '#86a6f8'
+    }else if (e.textContent == "electric"){
+        e.style.backgroundColor = '#fadb2b'
+    }else if (e.textContent == "fairy"){
+        e.style.backgroundColor = '#f0acff'
+    }
+}
+function GetTypes(response){    
     response.forEach(type => {
-        alltypes.textContent += type.type.name+" "
+        let div_types = document.getElementsByClassName('pokemon_type')[0]
+        alltypes = document.createElement("p")
+        alltypes.textContent += type.type.name
         TypeEffect(type.type.url);
+        alltypes.className ="py-2 px-4 border-2 border-black rounded-full"
+        div_types.appendChild(alltypes)
+        
+        typesColors(alltypes)
         
     });
-    div_types.appendChild(alltypes)
     
 }
 function TypeEffect(response){
@@ -76,7 +124,8 @@ function GetDamageRelation(damage_relation,damage_relation_div){
         let typedamage = document.createElement("p")
         typedamage.textContent += type.name
         damage_relation_div.appendChild(typedamage)
-
+        typedamage.className ="py-2 px-4 border-2 border-black rounded-full"
+        typesColors(typedamage)
     });
 }
 function GetStats(stats){
@@ -102,3 +151,14 @@ function Getcolor(value){
     else if(value < 120) return "ok"
     else return "cool"
 }
+
+const pressed = []
+const secretCode = 'fusion!'
+window.addEventListener('keyup', (e) => {
+  console.log(e.key)
+  pressed.push(e.key)
+  pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length)
+  if (pressed.join('').includes(secretCode)) {
+    window.location.href ="https://aegide.github.io/"
+  }
+})

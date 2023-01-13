@@ -8,12 +8,14 @@ let pageContent = document.querySelector('.pageContent')
 let offset = 0
 let nbr_affiche = 5
 
-let pkm_nbr_1ere = 11
+let pkm_nbr_1ere = 151
 let pkm_nbr_2eme = 100
 let pkm_nbr_3eme = 135
 let pkm_nbr_4eme = 107
 let pkm_nbr_5eme = 156
 let pkm_nbr_6eme = 72
+let pkm_nbr_7eme = 88
+let pkm_nbr_8eme = 96
 
 let first_gen = document.querySelector('.first-gen')
 let generation = document.querySelector('.generation')
@@ -27,7 +29,7 @@ function getRandomArbitrary(min, max) {
   }
 let randomBtn = document.querySelector('.random')
 randomBtn.addEventListener('click', function(){
-    let number = getRandomArbitrary(1,721)
+    let number = getRandomArbitrary(1,905)
     resetInnerHTML()
     pokemons = []
     fetchRandom(number)
@@ -92,6 +94,20 @@ const fetchPokemons = async () => {
         pokemons = []
         console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme; i++) {
+            await getAllPokemon(i)
+        }
+    }
+    else if (generation.value == "7th Generation") {
+        pokemons = []
+        console.log('init')
+        for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + pkm_nbr_7eme; i++) {
+            await getAllPokemon(i)
+        }
+    }
+    else if (generation.value == "8th Generation") {
+        pokemons = []
+        console.log('init')
+        for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + pkm_nbr_7eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + pkm_nbr_7eme + pkm_nbr_8eme; i++) {
             await getAllPokemon(i)
         }
     }
