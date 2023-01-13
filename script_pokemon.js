@@ -41,8 +41,10 @@ const getAttackMoves = async (response) => {
 }
 
 const getAttackMovesDetails = async (response) => {
+    console.log(response)
     let p = document.querySelector('.' + response.name)
-    p.innerHTML += `<p class="py-2 px-4 border-2 border-black rounded-full" id="${response.id}">${response.name}</p>`
+    p.innerText += ` / Accuracy : ${response.accuracy} / Dmg : ${response.damage_class.name} / Power : ${response.power} / PP : ${response.pp}`
+    p.innerHTML += `<p class="py-2 px-4 border-2 border-black rounded-full" id="${response.id}">${response.type.name}</p>`
     let type = document.getElementById(response.id)
     typesColors(type)
 }

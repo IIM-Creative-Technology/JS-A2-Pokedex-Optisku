@@ -9,7 +9,7 @@ let offset = 1
 let limite = 20
 let nbr_affiche = 5
 
-let pkm_nbr_1ere = 11
+let pkm_nbr_1ere = 151
 let pkm_nbr_2eme = 100
 let pkm_nbr_3eme = 135
 let pkm_nbr_4eme = 107
