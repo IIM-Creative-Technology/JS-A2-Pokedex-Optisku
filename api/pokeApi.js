@@ -2,10 +2,11 @@ let pokemons = []
 let url = "https://pokeapi.co/api/v2/pokemon"
 let currentGen = "gen1"
 
-let offset = 0
+let offset = 1
+let limite = 20
 let nbr_affiche = 5
 
-let pkm_nbr_1ere = 5
+let pkm_nbr_1ere = 151
 let pkm_nbr_2eme = 100
 let pkm_nbr_3eme = 135
 let pkm_nbr_4eme = 107
@@ -42,14 +43,18 @@ nextGenButton.addEventListener("click", function(){
 const fetchRandom = async (id) => {
     await getAllPokemon(id)
     pokemons.forEach(pokemon => {
-        console.log('init')
         showPokemon(pokemon)
+        changeToShiny(pokemons)
     })
 }
 
 const fetchPokemons = async () => {
     if(generation.value == "gen1"){
         pokemons = []
+        // for(let i = offset; i <= limite; i++) {
+        //     console.log(i)
+        //     await getAllPokemon(i)
+        // }
         for(let i = 1; i <= pkm_nbr_1ere; i++) {
             await getAllPokemon(i)
         }
@@ -60,25 +65,21 @@ const fetchPokemons = async () => {
         }
     }else if (generation.value == "gen3") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme; i++) {
             await getAllPokemon(i)
         }
     }else if (generation.value == "gen4") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme; i++) {
             await getAllPokemon(i)
         }
     }else if (generation.value == "gen5") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme; i++) {
             await getAllPokemon(i)
         }
     }else if (generation.value == "gen6") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme; i++) {
             await getAllPokemon(i)
         }
@@ -86,12 +87,13 @@ const fetchPokemons = async () => {
     pokemons.forEach(pokemon => {
         showPokemon(pokemon)
     })
+    console.log("fin", pokemons)
     changeToShiny(pokemons)
     // console.log(pokemons[3])
 }
 
 const getAllPokemon = async (id) => {
-    console.log(`${url}/${id}`)
+    // console.log(`${url}/${id}`)
     const result = await fetch(`${url}/${id}`)
     const pokemonAdd = await result.json()
     pokemons.push(pokemonAdd)
@@ -129,10 +131,8 @@ const showPokemon = async (pokemon) => {
 }
 
 const changeToShiny = async (pokemons) => {
-    console.log(pokemons)
     pokemons.forEach(pokemon => {
         let current = document.querySelector("." + pokemon.name)
-        console.log(current)
         current.addEventListener("mouseenter", function() {
             current.src = `${pokemon.sprites.front_shiny}`
         })
@@ -153,8 +153,10 @@ function wait(ms) {
 
 // window.onscroll = function() {
 //     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-//         offset += 20
+//         offset += limite
+//         limite += 20
 //         fetchPokemons()
+//         console.log(offset)
 //     }
-//     wait(1000)
+//     wait(3000)
 // };
