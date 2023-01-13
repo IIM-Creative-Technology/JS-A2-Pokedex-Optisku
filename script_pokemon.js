@@ -28,7 +28,7 @@ const getAttackMoves = async (response) => {
     console.log(response.moves[8])
     response.moves.forEach(move => {
         if(stop < 10) {
-            div.innerHTML += `<p class="${move.move.name}">${move.move.name}</p>`
+            div.innerHTML += `<p class="${move.move.name} font-bold">${move.move.name}</p>`
             stop++
         }
         fetch(move.move.url).then(response => response.json()).then(response =>{
