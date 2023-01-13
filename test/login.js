@@ -16,10 +16,18 @@ function inscription() {
   var sign_password = document.getElementById("sign_password").value;
 
   // vérification que l'utilisateur n'est pas déjà inscrit
-  if (utilisateurs.indexOf(sign_name) != -1) {
+  /*if (utilisateurs.indexOf(sign_name) != -1) {
     alert("Ce nom d'utilisateur est déjà pris, merci d'en choisir un autre.");
     return;
-  }
+  }*/
+  
+  for (let user in utilisateurs) {
+    console.log(utilisateurs[user].name);
+    if (utilisateurs[user].name === sign_name){
+      alert("Ce nom d'utilisateur est déjà pris, merci d'en choisir un autre.");
+    return;
+    }
+}
 
   // création de l'objet utilisateur
   var utilisateur = {
@@ -78,9 +86,13 @@ function connexion() {
 
 function deconnexion() {
     // vidage de l'objet utilisateurConnecte
-    utilisateurConnecte = Object.assign({});
-  
-    // mise à jour de l'élément pour afficher le nom de l'utilisateur connecté
+    //utilisateurConnecte = Object.assign({});
+    
+    updateUtilisateur = localStorage.getItem('utilisateurConnecte');
+    updateUtilisateur = JSON.parse(updateUtilisateur);
+    updateUtilisateur = Object.assign({});
+
+    localStorage.setItem("utilisateurConnecte", JSON.stringify(updateUtilisateur));
     document.getElementById("nom-utilisateur").innerHTML = "Bienvenue, utilisateur non connecté.";
 }
 if(utilisateurConnecte === undefined){
