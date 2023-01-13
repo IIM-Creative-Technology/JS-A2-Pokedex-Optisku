@@ -50,10 +50,10 @@ const fetchRandom = async (id) => {
     await getAllPokemon(id)
     pokemons.forEach(pokemon => {
         showPokemon(pokemon)
+
         genTitle.innerText = pokemon.name
         pokeContainer.style.display = 'block'
         pokeContainer.style.width = '20%'
-
     })
     changeToShiny(pokemons)
 }
@@ -160,9 +160,9 @@ const showPokemon = async (pokemon) => {
         `
         <form action="pokemon.html" method="get">
             <input id="id" name="id" type="hidden" value=${pokemon.id}>
-            <div class="pokemon flex flex-col items-center capitalize font-semibold" onclick="javascript:this.parentNode.submit()">
+            <div  ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" class="pokemon flex flex-col items-center capitalize font-semibold" onclick="javascript:this.parentNode.submit()">
                 <h2>N°${pokemon.id} ${pokemon.name}</h2>
-                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
+                <img ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
             </div>
         </form>
         `
@@ -196,6 +196,10 @@ function wait(ms) {
 //         fetchPokemons()
 //         console.log(offset)
 //     }
+
+//     wait(3000)
+// };
+
 //     wait(1000)
 // };
 
