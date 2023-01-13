@@ -8,7 +8,7 @@ let pageContent = document.querySelector('.pageContent')
 let offset = 0
 let nbr_affiche = 5
 
-let pkm_nbr_1ere = 151
+let pkm_nbr_1ere = 11
 let pkm_nbr_2eme = 100
 let pkm_nbr_3eme = 135
 let pkm_nbr_4eme = 107
@@ -29,7 +29,7 @@ function getRandomArbitrary(min, max) {
   }
 let randomBtn = document.querySelector('.random')
 randomBtn.addEventListener('click', function(){
-    let number = getRandomArbitrary(1,905)
+    let number = getRandomArbitrary(1,904)
     resetInnerHTML()
     pokemons = []
     fetchRandom(number)
@@ -124,39 +124,6 @@ const getAllPokemon = async (id) => {
     const pokemonAdd = await result.json()
     pokemons.push(pokemonAdd)
 }
-
-/*const showPokemon = async (pokemon) => {
-    if(typeof pokemon.types[1] != "undefined"){ 
-        first_gen.innerHTML += 
-            `
-            <form action="pokemon.html" method="get">
-                <input id="id" name="id" type="hidden" value=${pokemon.id}>
-                <div class="pokemon" onclick="javascript:this.parentNode.submit()">
-                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
-                    <h2>${pokemon.name}</h2>
-                    <div class="types">
-                        <h3>${pokemon.types[0].type.name}</h3>
-                        <h3>${pokemon.types[1].type.name}</h3>
-                    </div>
-                </div>
-            </form>
-            `
-    }else {
-        first_gen.innerHTML +=
-            `
-            <form action="pokemon.html" method="get">
-                <input id="id" name="id" type="hidden" value=${pokemon.id}>
-                <div class="pokemon" onclick="javascript:this.parentNode.submit()">
-                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
-                    <h2>${pokemon.name}</h2>
-                    <div class="types">
-                        <h3>${pokemon.types[0].type.name}</h3>
-                    </div>
-                </div>
-            </form>
-            `
-    }
-}*/
 
 const showPokemon = async (pokemon) => {
     first_gen.innerHTML += 

@@ -124,9 +124,20 @@ function GetDamageRelation(damage_relation,damage_relation_div){
         let typedamage = document.createElement("p")
         typedamage.textContent += type.name
         damage_relation_div.appendChild(typedamage)
-        typedamage.className ="py-2 px-4 border-2 border-black rounded-full"
+        typedamage.className ="py-2 px-4 border-2 border-black rounded-full typeCapsule " + type.name
+        typedamage.id = "typeCaps " + type.name
+
+        let typeCap = document.getElementById("typeCaps "+ ${type.name}")
+        if (typedamage.id == typeCap){
+            typedamage.style.display = "block"
+        }
         typesColors(typedamage)
+
+
     });
+    
+    
+        
 }
 function GetStats(stats){
     i=0
