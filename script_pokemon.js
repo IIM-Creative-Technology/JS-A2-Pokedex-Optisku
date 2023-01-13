@@ -20,7 +20,7 @@ function FetchAPIPokemon(){
     
 }
 function Getinfo(response){
-    
+    document.title = response.name + " - Pokédex" 
     div_info = document.getElementsByClassName('pokemon_info')[0]
     let pokeTitle = document.querySelector('.title')
     pokeTitle.innerText = "N°"+response.id + ' ' + response.name
