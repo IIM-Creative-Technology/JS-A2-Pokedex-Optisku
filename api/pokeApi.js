@@ -36,8 +36,6 @@ randomBtn.addEventListener('click', function(){
     fetchRandom(number)
 
 })
-// console.log(getRandomArbitrary(1,721))
-
 
 function chooseGen(val) {
     resetInnerHTML()
@@ -48,19 +46,14 @@ function chooseGen(val) {
     this.form.submit()
 }
 
-
 const fetchRandom = async (id) => {
     await getAllPokemon(id)
     pokemons.forEach(pokemon => {
         showPokemon(pokemon)
-<<<<<<< HEAD
-        changeToShiny(pokemons)
-=======
         genTitle.innerText = pokemon.name
         pokeContainer.style.display = 'block'
         pokeContainer.style.width = '20%'
 
->>>>>>> 46d8e7d75a59c7729ba09edd48bd4ae3437df2ec
     })
     changeToShiny(pokemons)
 }
@@ -103,14 +96,12 @@ const fetchPokemons = async () => {
     }
     else if (generation.value == "7th Generation") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + pkm_nbr_7eme; i++) {
             await getAllPokemon(i)
         }
     }
     else if (generation.value == "8th Generation") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + pkm_nbr_7eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + pkm_nbr_7eme + pkm_nbr_8eme; i++) {
             await getAllPokemon(i)
         }
@@ -118,9 +109,10 @@ const fetchPokemons = async () => {
     pokemons.forEach(pokemon => {
         showPokemon(pokemon)
     })
-    console.log("fin", pokemons)
     changeToShiny(pokemons)
-    // console.log(pokemons[3])
+    // pokemons[1].moves.forEach(move => {
+    //     console.log(move.move.name)
+    // })
 }
 
 const getAllPokemon = async (id) => {
@@ -204,10 +196,6 @@ function wait(ms) {
 //         fetchPokemons()
 //         console.log(offset)
 //     }
-<<<<<<< HEAD
-//     wait(3000)
-// };
-=======
 //     wait(1000)
 // };
 
@@ -223,4 +211,3 @@ window.addEventListener('keyup', (e) => {
   }
 })
 
->>>>>>> 46d8e7d75a59c7729ba09edd48bd4ae3437df2ec
