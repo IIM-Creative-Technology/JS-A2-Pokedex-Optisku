@@ -57,34 +57,54 @@ function drop_handler(ev) {
     
     console.log(utilisateurConnecte.equipes);
 
-    let hhh = localStorage.getItem('');
-    hbh = JSON.parse(hhh);
-    console.log(hbh);
+    let updateUtilisateur = localStorage.getItem('utilisateurConnecte');
+    updateUtilisateur = JSON.parse(updateUtilisateur);
+    console.log(updateUtilisateur);
+    
+    updateUtilisateur.equipes.equipe1.push(pokemonId);
+    console.log(updateUtilisateur);
 
-    if (utilisateurConnecte.equipes.equipe1 === undefined) {
-        console.log('rien');
-        let rebuildUser = {
-            "name": utilisateurConnecte.name,
-            "password": utilisateurConnecte.password,
-            "equipe1": {}
-        }
-        utilisateurConnecte = rebuildUser;
-        localStorage.setItem('utilisateurConnecte', JSON.stringify(utilisateurConnecte));
-        localStorage.setItem('utilisateurs', JSON.stringify(utilisateurConnecte));
-        
+    localStorage.setItem("utilisateurConnecte", JSON.stringify(updateUtilisateur));
 
+    showPokeTeam();
+
+}
+
+console.log(utilisateurConnecte.equipes.equipe1.lenght);
+function getTeamLenght(){
+    let i = 0;
+    while(utilisateurConnecte.equipes.equipe1[i]){
+        i++
+    }
+    return i;
+    
+}
+
+function getPokeId(i){
+    pokeId = utilisateurConnecte.equipes.equipe1[i];
+    return pokeId;
+}
+
+function showPokeTeam(){
+    
+    len = getTeamLenght();
+    for (let i =0; i < len; i++){
+
+        id = getPokeId(i);
+
+        fetch('https://pokeapi.co/api/v2/pokemon/' + id)
+        .then(response => response.json())
+        .then(pokemon => {
+        // Ajout du pokémon à l'équipe
+            var li = document.createElement("li");
+            li.classList.add("pokemon");
+            li.innerHTML = pokemon.name;
+            document.getElementById("team").appendChild(li);
+        });
     }
 
-    fetch('https://pokeapi.co/api/v2/pokemon/' + pokemonId)
-    .then(response => response.json())
-    .then(pokemon => {
-        // Ajout du pokémon à l'équipe
-        var li = document.createElement("li");
-        li.classList.add("pokemon");
-        li.innerHTML = pokemon.name;
-        document.getElementById("team").appendChild(li);
-    });
-   }
+}
+showPokeTeam();
 
 
    // Const showPokemon dans PokéAPI.JS =
