@@ -12,6 +12,7 @@ function dragover_handler(ev) {
 }
 
 function getTeamNumb(ev){
+    console.log(ev.target.id);
     if(ev.target.id === "team2"){
         return 2;
     }else if(ev.target.id === "team1"){
@@ -141,7 +142,7 @@ function clearPokeTeam(numb){
 }
 function clearAllPokeTeam(){
     let i = 1;
-    while(i <= 6){
+    while(i < 6){
         clearPokeTeam(i);
         i++;
     }
@@ -152,7 +153,7 @@ function drop_handler(ev) {
     ev.preventDefault();
 
     let teamNumb = getTeamNumb(ev);
-    //clearAllPokeTeam();
+    clearAllPokeTeam();
 
     //console.log(ev.target.id);
 
@@ -193,7 +194,7 @@ function drop_handler(ev) {
 
     //showAllPokeTeam();
     //clearPokeTeam(teamNumb);
-    clearAllPokeTeam();
+    
     showAllPokeTeam();
 
 }
