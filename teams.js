@@ -1,42 +1,45 @@
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-FetchAPIPokemon();
+const pokemon_in_team = [1,2,3,4,5,6]
+let  alltypesinteams = new Array
+let alltypes = document.createElement("p")
+let div_types = document.getElementsByClassName('pokemon_type')[0]
+FetchAPIPokemon(pokemon_in_team);
 
-function FetchAPIPokemon(){
-    if(urlParams.has('id')){
-        const id = urlParams.get('id')
-        fetch('https://pokeapi.co/api/v2/pokemon/'+id).then(response => response.json()).then(response =>{
-        console.log(response)
-        DisplayImagePokemon(response.sprites);
+function FetchAPIPokemon(pokemon_in_team){
+        pokemon_in_team.forEach(pokemon_id =>{
+            fetch('https://pokeapi.co/api/v2/pokemon/'+pokemon_id).then(response => response.json()).then(response =>{
+        DisplayImagePokemon(response);
         GetTypes(response.types);
         GetStats(response.stats);
+        })
         
     })
+    div_types.appendChild(alltypes)
     };
-    
-}
+
 
 function DisplayImagePokemon(response){
         let div_image = document.getElementsByClassName('pokemon_image')[0]
         let newimage = document.createElement("img")
-        newimage.src = response.front_default
+        newimage.src = response.sprites.front_default
         div_image.appendChild(newimage);
 }
 function GetTypes(response){
-    let div_types = document.getElementsByClassName('pokemon_type')[0]
-    alltypes = document.createElement("p")
     response.forEach(type => {
-        alltypes.textContent += type.type.name+" "
         TypeEffect(type.type.url);
-        
+        alltypesinteams.indexOf(type.type.name) === -1 ? alltypesinteams.push(type.type.name) : console.log("This item already exists");
+        console.log(alltypesinteams)
     });
-    div_types.appendChild(alltypes)
+    alltypes.textContent = ""
+    let length_alltypesinteams = alltypesinteams.length
+    for(let i = 0; i<4;i++){
+        alltypes.textContent += alltypesinteams[i]+" " 
+    }
+    
     
 }
 function TypeEffect(response){
     fetch(response).then(response => response.json()).then(response =>{
         i=0
-        console.log(response)
         damage_relations = response.damage_relations
         for (const [name, damage_relation] of Object.entries(damage_relations)){
         let damage_relation_div = document.getElementsByClassName('DamageRelation')[i]

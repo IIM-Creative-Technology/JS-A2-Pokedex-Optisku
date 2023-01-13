@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header class="flex items-center justify-evenly my-6">
+        <a href="index.html">
+            <img class="w-[300px]" src="img/pokemon.png" alt="Logo">
+        </a>
+        
+        <form action="/action_page.php">
+            <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px]" type="text" placeholder="Search Pokémon..." name="search">
+          </form>
+
+        <form id="header-tri" action="" method="get">
+            <select class="generation p-2 font-semibold border-[3px] border-black text-sm" onchange="chooseGen(this.val)">
+                <option value="1st Generation" selected>Choose a generation</option>
+                <option value="1st Generation">1st</option>
+                <option value="2nd Generation">2nd</option>
+                <option value="3th Generation">3rd</option>
+                <option value="4th Generation">4th</option>
+                <option value="5th Generation">5th</option>
+                <option value="6th Generation">6th</option>
+                <option value="7th Generation">7th</option>
+                <option value="8th Generation">8th</option>
+            </select>
+        </form>
+       
+        <button class="random"><img src="img/random.png" alt="Random Pokemon"></button>
+    </header>
+
+    <main class="flex items-start justify-between">
+        <div class="teams p-8 w-[20vw] flex flex-col items-center sticky top-0">
+            <h2 class="font-black text-4xl capitalize mt-4 mb-8">Teams</h2>
+            <div>
+                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°1</h3>
+            </div>
+            <div>
+                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°2</h3>
+            </div>
+            <div>
+                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°3</h3>
+            </div>
+            <div>
+                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°4</h3>
+            </div>
+            <div>
+                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°5</h3>
+            </div>
+            <div>
+                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°6</h3>
+            </div>
+        </div>
+
+    <div class="pageContent  w-[70vw] p-8">
+        <h1 class="title font-black text-6xl capitalize mt-4 mb-8">1st Generation</h1>
+        <div class="pt-8 px-32 pb-32">
+            <div class="flex flex-col justify-between items-center">
+                <div class="flex flex-col background_pokemon">
+                    <div class="pokemon_image m-auto grid grid-cols-3 p-8"></div>
+                    <div class="pokemon_info flex gap-2"></div>
+                </div>
+                <div class="pokemon_type uppercase font-semibold text-white text-center text-2xl flex flex-col gap-4"></div>
+                <div class="pokemon_wh font-semibold text-md"></div>
+            </div>
+            
+            <h3 class="text-4xl mt-10 mb-4 font-bold">Type effectiveness</h3>
+            <div class="DivDamageRelation grid grid-cols-3 gap-6 w-[58vw]">
+                <div>
+                    <h2>Double damage to :</h2>
+                    <div class="DamageRelation "></div>
+                </div>  
+                <div>
+                    <h2>Half damage to :</h2>
+                    <div  class="DamageRelation "></div>
+                </div>
+                <div>
+                    <h2>No damage to :</h2>
+                    <div  class="DamageRelation "></div>
+                </div>
+
+                <div>
+                    <h2>Double damage taken from :</h2>
+                    <div  class="DamageRelation "></div>
+                </div>
+                <div>
+                    <h2>Half damage taken from :</h2>
+                    <div  class="DamageRelation  "></div>
+                </div>
+                <div>
+                    <h2>No damage taken from :</h2>
+                    <div  class="DamageRelation "></div>
+                </div>
+            </div>
+            <h3 class="text-4xl mt-10 mb-4 font-bold">Pokemon stats</h3>
+            <div class="Stats_info grid grid-cols-2 gap-4 capitalize">
+                <div class="Stats"></div>
+                <div class="Stats"></div>
+                <div class="Stats"></div>
+                <div class="Stats"></div>
+                <div class="Stats"></div>
+                <div class="Stats"></div>
+            </div>
+        </div>
+    </div>
+</main>
+    
+</body>
+<script src="teams.js"></script>
+</html>
