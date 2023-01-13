@@ -12,6 +12,7 @@ function dragover_handler(ev) {
 }
 
 function getTeamNumb(ev){
+    console.log(ev);
     console.log(ev.target.id);
     if(ev.target.id === "team2"){
         return 2;
@@ -151,8 +152,10 @@ showAllPokeTeam();
 
 function drop_handler(ev) {
     ev.preventDefault();
+    console.log(ev);
 
     let teamNumb = getTeamNumb(ev);
+    console.log(teamNumb);
     clearAllPokeTeam();
 
     //console.log(ev.target.id);

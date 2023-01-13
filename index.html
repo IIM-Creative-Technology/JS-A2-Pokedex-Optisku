@@ -27,6 +27,16 @@
                 <option value="ice">Ice</option>
                 <option value="electric">Electric</option>
                 <option value="poison">Poison</option>
+                <option value="fighting">Fighting</option>
+                <option value="flying">Flying</option>
+                <option value="psychic">Psychic</option>
+                <option value="bug">Bug</option>
+                <option value="rock">Rock</option>
+                <option value="ghost">Ghost</option>
+                <option value="dark">Dark</option>
+                <option value="dragon">Dragon</option>
+                <option value="steel">Steel</option>
+                <option value="fairy">Fairy</option>
             </select>
 
             <form id="header-tri" action="" method="get">
@@ -34,7 +44,7 @@
                     <option value="1st Generation" selected>Choose a generation</option>
                     <option value="1st Generation">1st</option>
                     <option value="2nd Generation">2nd</option>
-                    <option value="3th Generation">3rd</option>
+                    <option value="3rd Generation">3rd</option>
                     <option value="4th Generation">4th</option>
                     <option value="5th Generation">5th</option>
                     <option value="6th Generation">6th</option>
@@ -46,7 +56,38 @@
             <button class="random"><img src="img/random.png" alt="Random Pokemon"></button>
         </header>
 
+        <div class="loginDiv flex items-center p-8 font-semibold items-center w-[50vw] mx-auto  mb-10">
+
+            <form id="form-inscription" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
+                <label for="sign_name">Nom d'utilisateur :</label>
+                <input type="text" id="sign_name" name="sign_name">
+                <br>
+                <label for="sign_password">Mot de passe :</label>
+                <input type="password" id="sign_password" name="sign_password">
+                <br>
+                <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="inscription()">S'inscrire</button>
+            </form>
+
+            <form id="form-connexion" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
+                <label for="log_name">Nom d'utilisateur :</label>
+                <input type="text" id="log_name" name="log_name">
+                <br>
+                <label for="log_password">Mot de passe :</label>
+                <input type="password" id="log_password" name="log_password">
+                <br>
+                <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="connexion()">Se connecter</button>
+            </form>
+            <div class="flex flex-col gap-4">
+                <div id="nom-utilisateur">
+                    <h2>Bienvenue, utilisateur non connecté.</h2>
+                </div>
+                <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="deconnexion()">Se déconnecter</button>
+            </div>
+            
+        </div>
         <main class="flex items-start justify-between">
+
+            
 
             <div class="teams p-8 w-[20vw] flex flex-col items-center sticky top-0">
 
@@ -103,35 +144,7 @@
             </div>
         </div>
 
-        <div class="loginDiv flex items-center p-8 font-semibold ">
 
-            <form id="form-inscription" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
-                <label for="sign_name">Nom d'utilisateur :</label>
-                <input type="text" id="sign_name" name="sign_name">
-                <br>
-                <label for="sign_password">Mot de passe :</label>
-                <input type="password" id="sign_password" name="sign_password">
-                <br>
-                <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="inscription()">S'inscrire</button>
-            </form>
-
-            <form id="form-connexion" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
-                <label for="log_name">Nom d'utilisateur :</label>
-                <input type="text" id="log_name" name="log_name">
-                <br>
-                <label for="log_password">Mot de passe :</label>
-                <input type="password" id="log_password" name="log_password">
-                <br>
-                <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="connexion()">Se connecter</button>
-            </form>
-            <div class="flex flex">
-                <div id="nom-utilisateur">
-                    <h2>Bienvenue, utilisateur non connecté.</h2>
-                </div>
-                <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="deconnexion()">Se déconnecter</button>
-            </div>
-            
-        </div>
     </main>
 
     

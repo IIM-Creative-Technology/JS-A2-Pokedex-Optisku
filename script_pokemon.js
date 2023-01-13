@@ -28,7 +28,7 @@ const getAttackMoves = async (response) => {
     console.log(response.moves[8])
     response.moves.forEach(move => {
         if(stop < 10) {
-            div.innerHTML += `<p class="${move.move.name}">${move.move.name}</p>`
+            div.innerHTML += `<p class="${move.move.name} font-bold">${move.move.name}</p>`
             stop++
         }
         fetch(move.move.url).then(response => response.json()).then(response =>{
@@ -41,8 +41,10 @@ const getAttackMoves = async (response) => {
 }
 
 const getAttackMovesDetails = async (response) => {
+    console.log(response)
     let p = document.querySelector('.' + response.name)
-    p.innerHTML += `<p class="py-2 px-4 border-2 border-black rounded-full text-center font-semibold" id="${response.id}">${response.type.name}</p>`
+    p.innerText += ` / Accuracy : ${response.accuracy} / Dmg : ${response.damage_class.name} / Power : ${response.power} / PP : ${response.pp}`
+    p.innerHTML += `<p class="py-2 px-4 border-2 border-black rounded-full" id="${response.id}">${response.type.name}</p>`
     let type = document.getElementById(response.id)
     typesColors(type)
 }

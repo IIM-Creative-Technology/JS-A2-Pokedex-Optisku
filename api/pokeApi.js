@@ -9,7 +9,7 @@ let offset = 1
 let limite = 20
 let nbr_affiche = 5
 
-let pkm_nbr_1ere = 11
+let pkm_nbr_1ere = 151
 let pkm_nbr_2eme = 100
 let pkm_nbr_3eme = 135
 let pkm_nbr_4eme = 107
@@ -94,11 +94,13 @@ const fetchPokemons = async () => {
             await getAllPokemon(i)
         }
     }else if (generation.value == "2nd Generation") {
+        console.log("2eme")
         pokemons = []
         for(let i = pkm_nbr_1ere + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme; i++) {
             await getAllPokemon(i)
         }
     }else if (generation.value == "3rd Generation") {
+        console.log("3eme")
         pokemons = []
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme; i++) {
             await getAllPokemon(i)
@@ -203,16 +205,14 @@ function wait(ms) {
 
 // window.onscroll = function() {
 //     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-//         offset += limite
+//         console.log("avvant" ,offset)
+//         offset += 20
 //         limite += 20
 //         fetchPokemons()
 //         console.log(offset)
 //     }
 
 //     wait(3000)
-// };
-
-//     wait(1000)
 // };
 
 
