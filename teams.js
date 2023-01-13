@@ -1,4 +1,5 @@
 const pokemon_in_team = [1,2,3,4,5,6]
+
 let  alltypesinteams = new Array
 let alltypes = document.createElement("p")
 let div_types = document.getElementsByClassName('pokemon_type')[0]
