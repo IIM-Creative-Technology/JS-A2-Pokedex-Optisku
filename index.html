@@ -18,6 +18,17 @@
             </a>
             <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px] searchBar" type="text" placeholder="Search Pokémon..." name="search">
 
+            <select name="" id="" class="type-filter">
+                <option value="" selected>Ajouter un filtre de type</option>
+                <option value="normal">Normal</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+                <option value="ice">Ice</option>
+                <option value="electric">Electric</option>
+                <option value="poison">Poison</option>
+            </select>
+
             <form id="header-tri" action="" method="get">
                 <select class="generation p-2 font-semibold border-[3px] border-black text-sm" onchange="chooseGen(this.val)">
                     <option value="1st Generation" selected>Choose a generation</option>
@@ -124,5 +135,6 @@
     <script src="scaroscripts/login.js"></script>
     <script src="api/pokeApi.js"></script>
     <script src="scaroscripts/dragdrop.js"></script>
+    <script src="script_pokemon.js"></script>
 </body>
 </html>

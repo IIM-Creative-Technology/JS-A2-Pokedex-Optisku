@@ -9,7 +9,7 @@ let offset = 1
 let limite = 20
 let nbr_affiche = 5
 
-let pkm_nbr_1ere = 151
+let pkm_nbr_1ere = 11
 let pkm_nbr_2eme = 100
 let pkm_nbr_3eme = 135
 let pkm_nbr_4eme = 107
@@ -17,6 +17,17 @@ let pkm_nbr_5eme = 156
 let pkm_nbr_6eme = 72
 let pkm_nbr_7eme = 88
 let pkm_nbr_8eme = 96
+
+let currentTypeFilter = document.querySelector('.type-filter')
+let currentTypeFilterValue = currentTypeFilter.value
+currentTypeFilter.addEventListener("click", function() {
+    if(currentTypeFilterValue != currentTypeFilter.value) {
+        currentTypeFilterValue = currentTypeFilter.value
+        resetInnerHTML()
+        genTitle.innerText = generation.value
+        fetchPokemons()
+    }
+})
 
 let first_gen = document.querySelector('.first-gen')
 let generation = document.querySelector('.generation')
@@ -30,7 +41,7 @@ function getRandomArbitrary(min, max) {
   }
 let randomBtn = document.querySelector('.random')
 randomBtn.addEventListener('click', function(){
-    let number = getRandomArbitrary(1,905)
+    let number = getRandomArbitrary(1,904)
     resetInnerHTML()
     pokemons = []
     fetchRandom(number)
@@ -137,7 +148,8 @@ const getAllPokemon = async (id) => {
 }
 
 const showPokemon = async (pokemon) => {
-    first_gen.innerHTML += 
+    if(currentTypeFilterValue == "") {
+        first_gen.innerHTML += 
         `
         <form action="pokemon.html" method="get">
             <input id="id" name="id" type="hidden" value=${pokemon.id}>
@@ -147,17 +159,36 @@ const showPokemon = async (pokemon) => {
             </div>
         </form>
         `
+    }else{
+        pokemon.types.forEach(result => {
+            if(result.type.name == currentTypeFilterValue){
+                first_gen.innerHTML += 
+                `
+                <form action="pokemon.html" method="get">
+                    <input id="id" name="id" type="hidden" value=${pokemon.id}>
+                    <div  ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" class="pokemon flex flex-col items-center capitalize font-semibold" onclick="javascript:this.parentNode.submit()">
+                        <h2>N°${pokemon.id} ${pokemon.name}</h2>
+                        <img ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
+                    </div>
+                </form>
+                `
+            }
+        })
+    }
 }
+    
 
 const changeToShiny = async (pokemons) => {
     pokemons.forEach(pokemon => {
-        let current = document.querySelector("." + pokemon.name)
-        current.addEventListener("mouseenter", function() {
-            current.src = `${pokemon.sprites.front_shiny}`
-        })
-        current.addEventListener("mouseleave", function() {
-            current.src = `${pokemon.sprites.front_default}`
-        })
+        if(document.querySelector("." + pokemon.name) != null){
+            let current = document.querySelector("." + pokemon.name)
+            current.addEventListener("mouseenter", function() {
+                current.src = `${pokemon.sprites.front_shiny}`
+            })
+            current.addEventListener("mouseleave", function() {
+                current.src = `${pokemon.sprites.front_default}`
+            })
+        }
     })
 }
 
@@ -185,6 +216,7 @@ function wait(ms) {
 // };
 
 
+// Easter egg
 const pressed = []
 const secretCode = 'battle!'
 window.addEventListener('keyup', (e) => {
@@ -196,6 +228,8 @@ window.addEventListener('keyup', (e) => {
   }
 })
 
+
+// Search bar
 let searchBar = document.querySelector('.searchBar')
 let searchTextValue = ""
 searchBar.addEventListener("keydown", (e) => {

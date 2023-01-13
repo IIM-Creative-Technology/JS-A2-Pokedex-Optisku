@@ -56,6 +56,7 @@ function getTeamLenght(numb){
 }
 
 function getPokeId(i, numb){
+    //console.log(utilisateurConnecte);
     if(numb === 1){
         pokeId = utilisateurConnecte.equipes.equipe1[i];
     }else if(numb === 2){
@@ -77,11 +78,11 @@ function getPokeId(i, numb){
 function showPokeTeam(numb){
     
     len = getTeamLenght(numb);
-    console.log(len);
+    //console.log(len);
     for (let i =0; i < len; i++){
 
         id = getPokeId(i, numb);
-        console.log(id);
+        //console.log(id);
 
         fetch('https://pokeapi.co/api/v2/pokemon/' + id)
         .then(response => response.json())
@@ -134,6 +135,9 @@ function clearPokeTeam(numb){
     }
     
     team.innerHTML="";
+    let h3 = document.createElement("h3");
+    h3.innerHTML= "Team N°" + numb;
+    team.appendChild(h3);
 }
 function clearAllPokeTeam(){
     let i = 1;
@@ -150,20 +154,20 @@ function drop_handler(ev) {
     let teamNumb = getTeamNumb(ev);
     //clearAllPokeTeam();
 
-    console.log(ev.target.id);
+    //console.log(ev.target.id);
 
     let pokemonId = ev.dataTransfer.getData("text/plain");
 
-    console.log(pokemonId);
+    //console.log(pokemonId);
     
-    console.log(utilisateurConnecte.equipes);
+    //console.log(utilisateurConnecte.equipes);
 
     let updateUtilisateur = localStorage.getItem('utilisateurConnecte');
     updateUtilisateur = JSON.parse(updateUtilisateur);
-    console.log(updateUtilisateur);
+    //console.log(updateUtilisateur);
 
     
-    console.log(teamNumb);
+    //console.log(teamNumb);
     if(teamNumb === 2){
         updateUtilisateur.equipes.equipe2.push(pokemonId);
     }else if(teamNumb === 1){
@@ -180,12 +184,16 @@ function drop_handler(ev) {
         console.log("error");
     }
 
-    console.log(updateUtilisateur);
+    //console.log(utilisateurConnecte);
+    //console.log(updateUtilisateur);
 
     localStorage.setItem("utilisateurConnecte", JSON.stringify(updateUtilisateur));
+    //console.log(utilisateurConnecte);
+    utilisateurConnecte = JSON.parse(localStorage.getItem('utilisateurConnecte')) || [];
 
     //showAllPokeTeam();
     //clearPokeTeam(teamNumb);
+    clearAllPokeTeam();
     showAllPokeTeam();
 
 }
