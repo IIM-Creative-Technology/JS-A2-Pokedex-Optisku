@@ -42,7 +42,7 @@ const getAttackMoves = async (response) => {
 
 const getAttackMovesDetails = async (response) => {
     let p = document.querySelector('.' + response.name)
-    p.innerHTML += `<p class="py-2 px-4 border-2 border-black rounded-full" id="${response.id}">${response.name}</p>`
+    p.innerHTML += `<p class="py-2 px-4 border-2 border-black rounded-full text-center font-semibold" id="${response.id}">${response.type.name}</p>`
     let type = document.getElementById(response.id)
     typesColors(type)
 }
@@ -122,6 +122,7 @@ function typesColors(e){
     }
 }
 function GetTypes(response){    
+    console.log(response)
     response.forEach(type => {
         let div_types = document.getElementsByClassName('pokemon_type')[0]
         alltypes = document.createElement("p")
@@ -140,6 +141,7 @@ function TypeEffect(response){
         i=0
         // console.log(response)
         damage_relations = response.damage_relations
+        console.log(damage_relations)
         for (const [name, damage_relation] of Object.entries(damage_relations)){
         let damage_relation_div = document.getElementsByClassName('DamageRelation')[i]
         GetDamageRelation(damage_relation, damage_relation_div)
@@ -152,16 +154,10 @@ function GetDamageRelation(damage_relation,damage_relation_div){
         let typedamage = document.createElement("p")
         typedamage.textContent += type.name
         damage_relation_div.appendChild(typedamage)
-        typedamage.className ="py-2 px-4 border-2 border-black rounded-full typeCapsule " + type.name
-        typedamage.id = "typeCaps " + type.name
+        typedamage.className ="py-2 px-4 border-2 border-black rounded-full  " + type.name
 
         typesColors(typedamage)
 
-        /*let typeCap = document.getElementById("typeCaps "+ ${type.name}")
-        if (typedamage.id == typeCap){
-            typedamage.style.display = "block"
-        }
-        typesColors(typedamage)*/
 
 
     });

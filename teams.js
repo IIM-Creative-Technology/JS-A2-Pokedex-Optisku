@@ -27,17 +27,6 @@ function Affichermoyenne(stats_moyenne,all_stats){
     i=0
     x++
     console.log(x)
-    /*
-    console.log()
-    stats_moyenne.forEach(stat_moyenne =>{
-        i++
-        stat_moyenne = Math.ceil(stat_moyenne/pokemon_in_team.length)
-        console.log(stat_moyenne)
-        let text_stat = document.getElementsByClassName('infostat'+i)[0]
-        text_stat.textContent = stat_moyenne
-        
-        
-    })*/
     if(x==pokemon_in_team.length){
         stats_moyenne.forEach(stat_moyenne =>{
             
@@ -74,6 +63,49 @@ function DisplayImagePokemon(response){
         newimage.src = response.sprites.front_default
         div_image.appendChild(newimage);
 }
+
+
+function typesColors(e){
+    if(e.textContent == "grass"){
+        e.style.backgroundColor = 'green'
+    } else if (e.textContent == "poison"){
+        e.style.backgroundColor = '#a2589e'
+    }else if (e.textContent == "normal"){
+        e.style.backgroundColor = '#b9b9ad'
+    }else if (e.textContent == "psychic"){
+        e.style.backgroundColor = '#f15ab5'
+    }else if (e.textContent == "ground"){
+        e.style.backgroundColor = '#e8cc56'
+    }else if (e.textContent == "ice"){
+        e.style.backgroundColor = '#a7f3ff'
+    }else if (e.textContent == "fire"){
+        e.style.backgroundColor = '#eb4d40'
+    }else if (e.textContent == "rock"){
+        e.style.backgroundColor = '#caba6d'
+    }else if (e.textContent == "dragon"){
+        e.style.backgroundColor = '#8a78fb'
+    }else if (e.textContent == "water"){
+        e.style.backgroundColor = '#6fb0ff'
+    }else if (e.textContent == "bug"){
+        e.style.backgroundColor = '#c3d000'
+    }else if (e.textContent == "dark"){
+        e.style.backgroundColor = '#705747'
+    }else if (e.textContent == "fighting"){
+        e.style.backgroundColor = '#9c573e'
+    }else if (e.textContent == "ghost"){
+        e.style.backgroundColor = '#7975d6'
+    }else if (e.textContent == "steel"){
+        e.style.backgroundColor = '#c4c2db'
+    }else if (e.textContent == "flying"){
+        e.style.backgroundColor = '#86a6f8'
+    }else if (e.textContent == "electric"){
+        e.style.backgroundColor = '#fadb2b'
+    }else if (e.textContent == "fairy"){
+        e.style.backgroundColor = '#f0acff'
+    }
+}
+
+
 function GetTypes(response){
     response.forEach(type => {
         TypeEffect(type.type.url);
@@ -83,6 +115,7 @@ function GetTypes(response){
     let length_alltypesinteams = alltypesinteams.length
     for(let i = 0; i<4;i++){
         alltypes.textContent += alltypesinteams[i]+" " 
+        
     }
     
     
@@ -98,11 +131,16 @@ function TypeEffect(response){
         }
     })
 }
+
+
 function GetDamageRelation(damage_relation,damage_relation_div){
     damage_relation.forEach(type =>{
         let typedamage = document.createElement("p")
         typedamage.textContent += type.name
         damage_relation_div.appendChild(typedamage)
+        typedamage.className ="py-2 px-4 border-2 border-black rounded-full  " + type.name
+
+        typesColors(typedamage)
 
     });
 }

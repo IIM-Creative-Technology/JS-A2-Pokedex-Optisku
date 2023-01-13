@@ -18,7 +18,7 @@
             </a>
             <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px] searchBar" type="text" placeholder="Search Pokémon..." name="search">
 
-            <select name="" id="" class="type-filter">
+            <select name="" id="" class="type-filter p-2 font-semibold border-[3px] border-black text-sm">
                 <option value="" selected>Ajouter un filtre de type</option>
                 <option value="normal">Normal</option>
                 <option value="fire">Fire</option>
@@ -103,31 +103,34 @@
             </div>
         </div>
 
-        <div class="flex-col">
+        <div class="loginDiv flex items-center p-8 font-semibold ">
 
-            <form id="form-inscription">
+            <form id="form-inscription" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
                 <label for="sign_name">Nom d'utilisateur :</label>
                 <input type="text" id="sign_name" name="sign_name">
                 <br>
                 <label for="sign_password">Mot de passe :</label>
                 <input type="password" id="sign_password" name="sign_password">
                 <br>
-                <button type="button" onclick="inscription()">S'inscrire</button>
+                <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="inscription()">S'inscrire</button>
             </form>
 
-            <form id="form-connexion">
+            <form id="form-connexion" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
                 <label for="log_name">Nom d'utilisateur :</label>
                 <input type="text" id="log_name" name="log_name">
                 <br>
                 <label for="log_password">Mot de passe :</label>
                 <input type="password" id="log_password" name="log_password">
                 <br>
-                <button type="button" onclick="connexion()">Se connecter</button>
+                <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="connexion()">Se connecter</button>
             </form>
-            <div id="nom-utilisateur">
-                Bienvenue, utilisateur non connecté.
+            <div class="flex flex">
+                <div id="nom-utilisateur">
+                    <h2>Bienvenue, utilisateur non connecté.</h2>
+                </div>
+                <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="deconnexion()">Se déconnecter</button>
             </div>
-            <button type="button" onclick="deconnexion()">Se déconnecter</button>
+            
         </div>
     </main>
 

@@ -31,6 +31,10 @@ body{
     background-color: #195b769e;
     border-radius: 25px 0 0 25px;
 }
+.loginDiv{
+    background-color: #195b769e;
+    border-radius: 25px;
+}
 .pokemon {
     cursor: pointer;
     -webkit-clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
@@ -92,5 +96,130 @@ progress {
 }
 
 #typeCaps{
+    display: none;
+}
+.DamageRelation .rock{
+    display: block;
+}
+.DamageRelation > .rock ~ .rock {
+    display: none;
+}
+
+.DamageRelation .grass{
+    display: block;
+}
+.DamageRelation > .grass ~ .grass {
+    display: none;
+}
+
+.DamageRelation .bug{
+    display: block;
+}
+.DamageRelation > .bug ~ .bug {
+    display: none;
+}
+
+.DamageRelation .dark{
+    display: block;
+}
+.DamageRelation > .dark ~ .dark {
+    display: none;
+}
+
+.DamageRelation .dragon{
+    display: block;
+}
+.DamageRelation > .dragon ~ .dragon {
+    display: none;
+}
+
+.DamageRelation .electric{
+    display: block;
+}
+.DamageRelation > .electric ~ .electric {
+    display: none;
+}
+
+.DamageRelation .fairy{
+    display: block;
+}
+.DamageRelation > .fairy ~ .fairy {
+    display: none;
+}
+
+.DamageRelation .fighting{
+    display: block;
+}
+.DamageRelation > .fighting ~ .fighting {
+    display: none;
+}
+
+.DamageRelation .fire{
+    display: block;
+}
+.DamageRelation > .fire ~ .fire {
+    display: none;
+}
+
+.DamageRelation .flying{
+    display: block;
+}
+.DamageRelation > .flying ~ .flying {
+    display: none;
+}
+
+.DamageRelation .ghost{
+    display: block;
+}
+.DamageRelation > .ghost ~ .ghost {
+    display: none;
+}
+
+.DamageRelation .ground{
+    display: block;
+}
+.DamageRelation > .ground ~ .ground {
+    display: none;
+}
+
+.DamageRelation .ice{
+    display: block;
+}
+.DamageRelation > .ice ~ .ice {
+    display: none;
+}
+
+.DamageRelation .normal{
+    display: block;
+}
+.DamageRelation > .normal ~ .normal {
+    display: none;
+}
+
+.DamageRelation .psychic{
+    display: block;
+}
+.DamageRelation > .psychic ~ .psychic {
+    display: none;
+}
+
+.DamageRelation .poison{
+    display: block;
+}
+.DamageRelation > .poison ~ .poison {
+    display: none;
+}
+
+.DamageRelation .steel{
+    display: block;
+}
+.DamageRelation > .steel ~ .steel {
+    display: none;
+}
+
+.DamageRelation .water{
+    display: block;
+}
+.DamageRelation > .water ~ .water {
     display: none;
 }
