@@ -7,19 +7,34 @@ function FetchAPIPokemon(){
         const id = urlParams.get('id')
         fetch('https://pokeapi.co/api/v2/pokemon/'+id).then(response => response.json()).then(response =>{
         console.log(response)
-        DisplayImagePokemon(response.sprites);
+        DisplayImagePokemon(response);
+        changeToShinySingle(response)
         GetTypes(response.types);
         GetStats(response.stats);
+        
+        
         
     })
     };
     
 }
+const changeToShinySingle = async (pokemons) => {
+    console.log(pokemons)
+        let current = document.getElementsByClassName('pokemon_image_url')[0]
+        console.log(current)
+        current.addEventListener("mouseenter", function() {
+            current.src = `${pokemons.sprites.front_shiny}`
+        })
+        current.addEventListener("mouseleave", function() {
+            current.src = `${pokemons.sprites.front_default}`
+        })
+}
 
 function DisplayImagePokemon(response){
         let div_image = document.getElementsByClassName('pokemon_image')[0]
         let newimage = document.createElement("img")
-        newimage.src = response.front_default
+        newimage.src = response.sprites.front_default
+        newimage.className ='w-60 h-auto pokemon_image_url'
         div_image.appendChild(newimage);
 }
 function GetTypes(response){
