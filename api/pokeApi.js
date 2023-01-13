@@ -140,9 +140,9 @@ const showPokemon = async (pokemon) => {
         `
         <form action="pokemon.html" method="get">
             <input id="id" name="id" type="hidden" value=${pokemon.id}>
-            <div class="pokemon flex flex-col items-center" onclick="javascript:this.parentNode.submit()">
+            <div ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" class="pokemon flex flex-col items-center" onclick="javascript:this.parentNode.submit()">
                 <h2>N°${pokemon.id} ${pokemon.name}</h2>
-                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
+                <img ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" data-id="${pokemon.name}" src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
             </div>
         </form>
         `
