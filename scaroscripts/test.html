@@ -5,18 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokédex</title>
-    <link rel="icon" type="image/x-icon" href="img/favicon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
     <div>
         <header class="flex items-center justify-evenly my-6">
-            <a href="index.html">
-                <img class="w-[300px]" src="img/pokemon.png" alt="Logo">
-            </a>
-            <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px] searchBar" type="text" placeholder="Search Pokémon..." name="search">
+            <img class="w-[300px]" src="../img/pokemon.png" alt="Logo">
+            <form action="/action_page.php">
+                <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px]" type="text" placeholder="Search Pokémon..." name="search">
+            </form>
 
             <form id="header-tri" action="" method="get">
                 <select class="generation p-2 font-semibold border-[3px] border-black text-sm" onchange="chooseGen(this.val)">
@@ -27,8 +26,6 @@
                     <option value="4th Generation">4th</option>
                     <option value="5th Generation">5th</option>
                     <option value="6th Generation">6th</option>
-                    <option value="7th Generation">7th</option>
-                    <option value="8th Generation">8th</option>
                 </select>
             </form>
         
@@ -36,11 +33,7 @@
         </header>
 
         <main class="flex items-start justify-between">
-
-            <div class="teams p-8 w-[20vw] flex flex-col items-center sticky top-0">
-
-                
-
+            <div class="teams p-8 w-[20vw] flex flex-col items-center">
                 <h2 class="font-black text-4xl capitalize mt-4 mb-8">Teams</h2>
                 <div >
                     <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team1" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°1</h3>
@@ -68,37 +61,42 @@
             </div>
         </div>
 
-        <div class="flex-col">
-
-            <form id="form-inscription">
-                <label for="sign_name">Nom d'utilisateur :</label>
-                <input type="text" id="sign_name" name="sign_name">
-                <br>
-                <label for="sign_password">Mot de passe :</label>
-                <input type="password" id="sign_password" name="sign_password">
-                <br>
-                <button type="button" onclick="inscription()">S'inscrire</button>
-            </form>
-
-            <form id="form-connexion">
-                <label for="log_name">Nom d'utilisateur :</label>
-                <input type="text" id="log_name" name="log_name">
-                <br>
-                <label for="log_password">Mot de passe :</label>
-                <input type="password" id="log_password" name="log_password">
-                <br>
-                <button type="button" onclick="connexion()">Se connecter</button>
-            </form>
-            <div id="nom-utilisateur">
-                Bienvenue, utilisateur non connecté.
-            </div>
-            <button type="button" onclick="deconnexion()">Se déconnecter</button>
-        </div>
-    </main>
 
     
-    <script src="scaroscripts/login.js"></script>
-    <script src="api/pokeApi.js"></script>
-    <script src="scaroscripts/dragdrop.js"></script>
+
+            <div class="flex-col">
+
+
+                    <form id="form-inscription">
+            <label for="sign_name">Nom d'utilisateur :</label>
+            <input type="text" id="sign_name" name="sign_name">
+            <br>
+            <label for="sign_password">Mot de passe :</label>
+            <input type="password" id="sign_password" name="sign_password">
+            <br>
+            <button type="button" onclick="inscription()">S'inscrire</button>
+        </form>
+        
+        <form id="form-connexion">
+            <label for="log_name">Nom d'utilisateur :</label>
+            <input type="text" id="log_name" name="log_name">
+            <br>
+            <label for="log_password">Mot de passe :</label>
+            <input type="password" id="log_password" name="log_password">
+            <br>
+            <button type="button" onclick="connexion()">Se connecter</button>
+        </form>
+        <div id="nom-utilisateur">
+            Bienvenue, utilisateur non connecté.
+        </div>
+        <button type="button" onclick="deconnexion()">Se déconnecter</button>
+        </div>
+    </main>
+    
+
+    
+    <script src="login.js"></script>
+    <script src="../api/pokeApi.js"></script>
+    <script src="dragdrop.js"></script>
 </body>
 </html>
