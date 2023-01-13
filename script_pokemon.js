@@ -127,11 +127,11 @@ function GetDamageRelation(damage_relation,damage_relation_div){
         typedamage.className ="py-2 px-4 border-2 border-black rounded-full typeCapsule " + type.name
         typedamage.id = "typeCaps " + type.name
 
-        let typeCap = document.getElementById("typeCaps "+ ${type.name}")
+        /*let typeCap = document.getElementById("typeCaps "+ ${type.name}")
         if (typedamage.id == typeCap){
             typedamage.style.display = "block"
         }
-        typesColors(typedamage)
+        typesColors(typedamage)*/
 
 
     });
