@@ -42,7 +42,7 @@ const getAttackMoves = async (response) => {
 
 const getAttackMovesDetails = async (response) => {
     let p = document.querySelector('.' + response.name)
-    p.innerHTML += `<p class="py-2 px-4 border-2 border-black rounded-full" id="${response.id}">${response.type.name}</p>`
+    p.innerHTML += `<p class="py-2 px-4 border-2 border-black rounded-full" id="${response.id}">${response.name}</p>`
     let type = document.getElementById(response.id)
     typesColors(type)
 }
@@ -154,6 +154,8 @@ function GetDamageRelation(damage_relation,damage_relation_div){
         damage_relation_div.appendChild(typedamage)
         typedamage.className ="py-2 px-4 border-2 border-black rounded-full typeCapsule " + type.name
         typedamage.id = "typeCaps " + type.name
+
+        typesColors(typedamage)
 
         /*let typeCap = document.getElementById("typeCaps "+ ${type.name}")
         if (typedamage.id == typeCap){
