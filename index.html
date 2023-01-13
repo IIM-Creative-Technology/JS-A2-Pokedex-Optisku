@@ -16,9 +16,7 @@
             <a href="index.html">
                 <img class="w-[300px]" src="img/pokemon.png" alt="Logo">
             </a>
-            <form action="/action_page.php">
-                <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px]" type="text" placeholder="Search Pokémon..." name="search">
-            </form>
+            <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px] searchBar" type="text" placeholder="Search Pokémon..." name="search">
 
             <form id="header-tri" action="" method="get">
                 <select class="generation p-2 font-semibold border-[3px] border-black text-sm" onchange="chooseGen(this.val)">
@@ -102,5 +100,6 @@
     <script src="scaroscripts/login.js"></script>
     <script src="api/pokeApi.js"></script>
     <script src="scaroscripts/dragdrop.js"></script>
+    <script src="script_pokemon.js"></script>
 </body>
 </html>

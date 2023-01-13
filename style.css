@@ -90,3 +90,7 @@ progress {
     color: white;
     text-align: center;
 }
+
+#typeCaps{
+    display: none;
+}
