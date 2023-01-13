@@ -8,17 +8,45 @@ function FetchAPIPokemon(){
     if(urlParams.has('id')){
         const id = urlParams.get('id')
         fetch('https://pokeapi.co/api/v2/pokemon/'+id).then(response => response.json()).then(response =>{
-        console.log(response)
+        // console.log(response)
         DisplayImagePokemon(response);
         changeToShinySingle(response)
         GetTypes(response.types);
         Getinfo(response)
         GetStats(response.stats);
         WeightAndHeight(response)
+        getAttackMoves(response)
     })
     };
     
 }
+
+const getAttackMoves = async (response) => {
+    let stop = 0
+    let fetchstop = 0
+    let div = document.querySelector('.attack-moves')
+    console.log(response.moves[8])
+    response.moves.forEach(move => {
+        if(stop < 10) {
+            div.innerHTML += `<p class="${move.move.name}">${move.move.name}</p>`
+            stop++
+        }
+        fetch(move.move.url).then(response => response.json()).then(response =>{
+            if(fetchstop < 10) {
+                getAttackMovesDetails(response)
+                fetchstop++
+            }
+        })
+    })
+}
+
+const getAttackMovesDetails = async (response) => {
+    let p = document.querySelector('.' + response.name)
+    p.innerHTML += `<p class="py-2 px-4 border-2 border-black rounded-full" id="${response.id}">${response.type.name}</p>`
+    let type = document.getElementById(response.id)
+    typesColors(type)
+}
+
 function Getinfo(response){
     document.title = response.name + " - Pokédex" 
     div_info = document.getElementsByClassName('pokemon_info')[0]
@@ -27,9 +55,9 @@ function Getinfo(response){
     
 }
 const changeToShinySingle = async (pokemons) => {
-    console.log(pokemons)
+    // console.log(pokemons)
         let current = document.getElementsByClassName('pokemon_image_url')[0]
-        console.log(current)
+        // console.log(current)
         current.addEventListener("mouseenter", function() {
             current.src = `${pokemons.sprites.front_shiny}`
         })
@@ -110,7 +138,7 @@ function GetTypes(response){
 function TypeEffect(response){
     fetch(response).then(response => response.json()).then(response =>{
         i=0
-        console.log(response)
+        // console.log(response)
         damage_relations = response.damage_relations
         for (const [name, damage_relation] of Object.entries(damage_relations)){
         let damage_relation_div = document.getElementsByClassName('DamageRelation')[i]

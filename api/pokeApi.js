@@ -5,7 +5,8 @@ let genTitle = document.querySelector('.title')
 let pokeContainer = document.querySelector('.pokeContainer')
 let pageContent = document.querySelector('.pageContent')
 
-let offset = 0
+let offset = 1
+let limite = 20
 let nbr_affiche = 5
 
 let pkm_nbr_1ere = 11
@@ -35,8 +36,6 @@ randomBtn.addEventListener('click', function(){
     fetchRandom(number)
 
 })
-// console.log(getRandomArbitrary(1,721))
-
 
 function chooseGen(val) {
     resetInnerHTML()
@@ -47,16 +46,28 @@ function chooseGen(val) {
     this.form.submit()
 }
 
-
 const fetchRandom = async (id) => {
     await getAllPokemon(id)
     pokemons.forEach(pokemon => {
-        console.log('init')
         showPokemon(pokemon)
+
         genTitle.innerText = pokemon.name
         pokeContainer.style.display = 'block'
         pokeContainer.style.width = '20%'
+    })
+    changeToShiny(pokemons)
+}
 
+const fetchSearch = async (value) => {
+    resetInnerHTML()
+    pokemons = []
+    await getAllPokemon(value)
+    pokemons.forEach(pokemon => {
+        showPokemon(pokemon)
+
+        genTitle.innerText = pokemon.name
+        pokeContainer.style.display = 'block'
+        pokeContainer.style.width = '20%'
     })
     changeToShiny(pokemons)
 }
@@ -64,6 +75,10 @@ const fetchRandom = async (id) => {
 const fetchPokemons = async () => {
     if(generation.value == "1st Generation"){
         pokemons = []
+        // for(let i = offset; i <= limite; i++) {
+        //     console.log(i)
+        //     await getAllPokemon(i)
+        // }
         for(let i = 1; i <= pkm_nbr_1ere; i++) {
             await getAllPokemon(i)
         }
@@ -74,39 +89,33 @@ const fetchPokemons = async () => {
         }
     }else if (generation.value == "3rd Generation") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme; i++) {
             await getAllPokemon(i)
         }
     }else if (generation.value == "4th Generation") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme; i++) {
             await getAllPokemon(i)
         }
     }else if (generation.value == "5th Generation") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme; i++) {
             await getAllPokemon(i)
         }
     }else if (generation.value == "6th Generation") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme; i++) {
             await getAllPokemon(i)
         }
     }
     else if (generation.value == "7th Generation") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + pkm_nbr_7eme; i++) {
             await getAllPokemon(i)
         }
     }
     else if (generation.value == "8th Generation") {
         pokemons = []
-        console.log('init')
         for(let i = pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + pkm_nbr_7eme + 1; i <= pkm_nbr_1ere + pkm_nbr_2eme + pkm_nbr_3eme + pkm_nbr_4eme + pkm_nbr_5eme + pkm_nbr_6eme + pkm_nbr_7eme + pkm_nbr_8eme; i++) {
             await getAllPokemon(i)
         }
@@ -115,11 +124,13 @@ const fetchPokemons = async () => {
         showPokemon(pokemon)
     })
     changeToShiny(pokemons)
-    // console.log(pokemons[3])
+    // pokemons[1].moves.forEach(move => {
+    //     console.log(move.move.name)
+    // })
 }
 
 const getAllPokemon = async (id) => {
-    console.log(`${url}/${id}`)
+    // console.log(`${url}/${id}`)
     const result = await fetch(`${url}/${id}`)
     const pokemonAdd = await result.json()
     pokemons.push(pokemonAdd)
@@ -130,19 +141,17 @@ const showPokemon = async (pokemon) => {
         `
         <form action="pokemon.html" method="get">
             <input id="id" name="id" type="hidden" value=${pokemon.id}>
-            <div class="pokemon flex flex-col items-center capitalize font-semibold" onclick="javascript:this.parentNode.submit()">
+            <div  ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" class="pokemon flex flex-col items-center capitalize font-semibold" onclick="javascript:this.parentNode.submit()">
                 <h2>N°${pokemon.id} ${pokemon.name}</h2>
-                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
+                <img ondragstart="dragstart_handler(event)" droppable="true" draggable="true" data-id="${pokemon.name}" src="${pokemon.sprites.front_default}" alt="${pokemon.name}" class="${pokemon.name}">
             </div>
         </form>
         `
 }
 
 const changeToShiny = async (pokemons) => {
-    console.log(pokemons)
     pokemons.forEach(pokemon => {
         let current = document.querySelector("." + pokemon.name)
-        console.log(current)
         current.addEventListener("mouseenter", function() {
             current.src = `${pokemon.sprites.front_shiny}`
         })
@@ -163,9 +172,15 @@ function wait(ms) {
 
 // window.onscroll = function() {
 //     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-//         offset += 20
+//         offset += limite
+//         limite += 20
 //         fetchPokemons()
+//         console.log(offset)
 //     }
+
+//     wait(3000)
+// };
+
 //     wait(1000)
 // };
 
@@ -173,11 +188,24 @@ function wait(ms) {
 const pressed = []
 const secretCode = 'battle!'
 window.addEventListener('keyup', (e) => {
-  console.log(e.key)
+//   console.log(e.key)
   pressed.push(e.key)
   pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length)
   if (pressed.join('').includes(secretCode)) {
     window.location.href ="https://play.pokemonshowdown.com/"
   }
+})
+
+let searchBar = document.querySelector('.searchBar')
+let searchTextValue = ""
+searchBar.addEventListener("keydown", (e) => {
+    if (e.keyCode >= 65 && e.keyCode <= 90) {
+        searchTextValue += e.key
+    }
+    if( e.keyCode == 8 || e.keyCode == 46 )
+        searchTextValue = searchTextValue.slice(0, -1);
+    if(e.key === "Enter")
+        fetchSearch(searchTextValue)
+    console.log(searchTextValue)
 })
 
