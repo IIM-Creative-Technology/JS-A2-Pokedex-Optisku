@@ -18,6 +18,17 @@
             </a>
             <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px] searchBar" type="text" placeholder="Search Pokémon..." name="search">
 
+            <select name="" id="" class="type-filter">
+                <option value="" selected>Ajouter un filtre de type</option>
+                <option value="normal">Normal</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+                <option value="ice">Ice</option>
+                <option value="electric">Electric</option>
+                <option value="poison">Poison</option>
+            </select>
+
             <form id="header-tri" action="" method="get">
                 <select class="generation p-2 font-semibold border-[3px] border-black text-sm" onchange="chooseGen(this.val)">
                     <option value="1st Generation" selected>Choose a generation</option>
@@ -42,24 +53,48 @@
                 
 
                 <h2 class="font-black text-4xl capitalize mt-4 mb-8">Teams</h2>
-                <div >
+                <form action="teams.html" method="get">
+                <div onclick="javascript:this.parentNode.submit()">
+                    <input class="id_user" id="id_user0" name="id_user" type="hidden">
+                    <input id="id_equipe" name="id_equipe" type="hidden" value=equipe1>
                     <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team1" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°1</h3>
                 </div>
-                <div>
+                </form> 
+                <form action="teams.html" method="get">
+                <div onclick="javascript:this.parentNode.submit()">
+                    <input class="id_user" id="id_user1" name="id_user" type="hidden">
+                    <input id="id_equipe" name="id_equipe" type="hidden" value=equipe2>
                     <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team2" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°2</h3>
                 </div>
-                <div>
+                </form>
+                <form action="teams.html" method="get">
+                <div onclick="javascript:this.parentNode.submit()">
+                    <input class="id_user" id="id_user2" name="id_user" type="hidden">
+                    <input id="id_equipe" name="id_equipe" type="hidden" value=equipe3>
                     <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team3" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°3</h3>
                 </div>
-                <div>
+                </form>
+                <form action="teams.html" method="get">
+                <div onclick="javascript:this.parentNode.submit()">
+                    <input class="id_user" id="id_user3" name="id_user" type="hidden">
+                    <input id="id_equipe" name="id_equipe" type="hidden" value=equipe4>
                     <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team4" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°4</h3>
                 </div>
-                <div>
+                </form>
+                <form action="teams.html" method="get">
+                <div onclick="javascript:this.parentNode.submit()">
+                    <input class="id_user" id="id_user4" name="id_user" type="hidden">
+                    <input id="id_equipe" name="id_equipe" type="hidden" value=equipe5>
                     <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team5" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°5</h3>
                 </div>
-                <div>
+                </form>
+                <form action="teams.html" method="get">
+                <div onclick="javascript:this.parentNode.submit()">
+                    <input class="id_user" id="id_user5" name="id_user" type="hidden">
+                    <input id="id_equipe" name="id_equipe" type="hidden" value=equipe6>
                     <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team6" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°6</h3>
                 </div>
+                </form>
             </div>
 
             <div class="pageContent p-8 flex flex-col items-center w-[65vw]">

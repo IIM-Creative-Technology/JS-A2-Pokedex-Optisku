@@ -98,3 +98,9 @@ if(utilisateurConnecte === undefined){
 }else{
     document.getElementById("nom-utilisateur").innerHTML = "Bienvenue, " + utilisateurConnecte.name + ".";
 }
+
+for (let i = 0; i < 6; i++){
+  console.log(utilisateurConnecte.name)
+  document.getElementById('id_user'+i).value = utilisateurConnecte.name
+}
+
