@@ -60,20 +60,20 @@
 
             <form id="form-inscription" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
                 <label for="sign_name">Nom d'utilisateur :</label>
-                <input type="text" id="sign_name" name="sign_name">
+                <input type="text" id="sign_name" name="sign_name" required>
                 <br>
                 <label for="sign_password">Mot de passe :</label>
-                <input type="password" id="sign_password" name="sign_password">
+                <input type="password" id="sign_password" name="sign_password" required>
                 <br>
                 <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="inscription()">S'inscrire</button>
             </form>
 
             <form id="form-connexion" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
                 <label for="log_name">Nom d'utilisateur :</label>
-                <input type="text" id="log_name" name="log_name">
+                <input type="text" id="log_name" name="log_name" required>
                 <br>
                 <label for="log_password">Mot de passe :</label>
-                <input type="password" id="log_password" name="log_password">
+                <input type="password" id="log_password" name="log_password" required>
                 <br>
                 <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="connexion()">Se connecter</button>
             </form>
