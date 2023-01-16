@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokédex</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -15,9 +15,7 @@
             <img class="w-[300px]" src="img/pokemon.png" alt="Logo">
         </a>
         
-        <form action="/action_page.php">
-            <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px]" type="text" placeholder="Search Pokémon..." name="search">
-          </form>
+        <input class="py-4 pl-4 w-[50vw] rounded-full font-semibold border-[3px] searchBar" type="text" placeholder="Search Pokémon..." name="search">
 
         <form id="header-tri" action="" method="get">
             <select class="generation p-2 font-semibold border-[3px] border-black text-sm" onchange="chooseGen(this.val)">
@@ -36,27 +34,83 @@
         <button class="random"><img src="img/random.png" alt="Random Pokemon"></button>
     </header>
 
+    <div class="loginDiv flex items-center justify-evenly p-8 font-semibold items-center w-[50vw] mx-auto  mb-10">
+
+        <form id="form-inscription" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
+            <label for="sign_name">Nom d'utilisateur :</label>
+            <input type="text" id="sign_name" name="sign_name">
+            <br>
+            <label for="sign_password">Mot de passe :</label>
+            <input type="password" id="sign_password" name="sign_password">
+            <br>
+            <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="inscription()">S'inscrire</button>
+        </form>
+
+        <form id="form-connexion" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
+            <label for="log_name">Nom d'utilisateur :</label>
+            <input type="text" id="log_name" name="log_name">
+            <br>
+            <label for="log_password">Mot de passe :</label>
+            <input type="password" id="log_password" name="log_password">
+            <br>
+            <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="connexion()">Se connecter</button>
+        </form>
+        <div id="connectedDiv" class=" hidden flex flex-col gap-4">
+            <div id="nom-utilisateur">
+                <h2>Bienvenue, utilisateur non connecté.</h2>
+            </div>
+            <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="deconnexion()">Se déconnecter</button>
+        </div>
+        
+    </div>
+
     <main class="flex items-start justify-between">
         <div class="teams p-8 w-[20vw] flex flex-col items-center sticky top-0">
+
             <h2 class="font-black text-4xl capitalize mt-4 mb-8">Teams</h2>
-            <div>
-                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°1</h3>
+            
+            <form action="teams.html" method="get">
+            <div onclick="javascript:this.parentNode.submit()">
+                <input class="id_user" id="id_user0" name="id_user" type="hidden">
+                <input id="id_equipe" name="id_equipe" type="hidden" value=equipe1>
+                <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team1" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°1</h3>
             </div>
-            <div>
-                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°2</h3>
+            </form> 
+            <form action="teams.html" method="get">
+            <div onclick="javascript:this.parentNode.submit()">
+                <input class="id_user" id="id_user1" name="id_user" type="hidden">
+                <input id="id_equipe" name="id_equipe" type="hidden" value=equipe2>
+                <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team2" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°2</h3>
             </div>
-            <div>
-                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°3</h3>
+            </form>
+            <form action="teams.html" method="get">
+            <div onclick="javascript:this.parentNode.submit()">
+                <input class="id_user" id="id_user2" name="id_user" type="hidden">
+                <input id="id_equipe" name="id_equipe" type="hidden" value=equipe3>
+                <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team3" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°3</h3>
             </div>
-            <div>
-                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°4</h3>
+            </form>
+            <form action="teams.html" method="get">
+            <div onclick="javascript:this.parentNode.submit()">
+                <input class="id_user" id="id_user3" name="id_user" type="hidden">
+                <input id="id_equipe" name="id_equipe" type="hidden" value=equipe4>
+                <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team4" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°4</h3>
             </div>
-            <div>
-                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°5</h3>
+            </form>
+            <form action="teams.html" method="get">
+            <div onclick="javascript:this.parentNode.submit()">
+                <input class="id_user" id="id_user4" name="id_user" type="hidden">
+                <input id="id_equipe" name="id_equipe" type="hidden" value=equipe5>
+                <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team5" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°5</h3>
             </div>
-            <div>
-                <h3 class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°6</h3>
+            </form>
+            <form action="teams.html" method="get">
+            <div onclick="javascript:this.parentNode.submit()">
+                <input class="id_user" id="id_user5" name="id_user" type="hidden">
+                <input id="id_equipe" name="id_equipe" type="hidden" value=equipe6>
+                <h3 ondrop="drop_handler(event)" ondragover="dragover_handler(event)" id="team6" class="teamDiv font-semibold text-xl capitalize py-4 px-8 my-4 w-[15vw] text-center">Team n°6</h3>
             </div>
+            </form>
         </div>
 
     <div class="pageContent  w-[70vw] p-8">
@@ -123,5 +177,6 @@
 </main>
     
 </body>
-<script src="script_pokemon.js"></script>
+<script src="scripts/login.js"></script>
+<script src="scripts/singlePokemon.js"></script>
 </html>

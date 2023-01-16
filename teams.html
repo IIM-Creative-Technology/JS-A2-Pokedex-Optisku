@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokédex</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -35,6 +35,36 @@
        
         <button class="random"><img src="img/random.png" alt="Random Pokemon"></button>
     </header>
+
+    <div class="loginDiv flex items-center justify-evenly p-8 font-semibold items-center w-[50vw] mx-auto  mb-10">
+
+        <form id="form-inscription" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
+            <label for="sign_name">Nom d'utilisateur :</label>
+            <input type="text" id="sign_name" name="sign_name">
+            <br>
+            <label for="sign_password">Mot de passe :</label>
+            <input type="password" id="sign_password" name="sign_password">
+            <br>
+            <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="inscription()">S'inscrire</button>
+        </form>
+
+        <form id="form-connexion" class="flex flex-col gap-1 m-4 border-2 border-black p-4 rounded-[25px] items-center">
+            <label for="log_name">Nom d'utilisateur :</label>
+            <input type="text" id="log_name" name="log_name">
+            <br>
+            <label for="log_password">Mot de passe :</label>
+            <input type="password" id="log_password" name="log_password">
+            <br>
+            <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="connexion()">Se connecter</button>
+        </form>
+        <div id="connectedDiv" class=" hidden flex flex-col gap-4">
+            <div id="nom-utilisateur">
+                <h2>Bienvenue, utilisateur non connecté.</h2>
+            </div>
+            <button class="pokemon text-end p-2 bg-blue!important" type="button" onclick="deconnexion()">Se déconnecter</button>
+        </div>
+        
+    </div>
 
     <main class="flex items-start justify-between">
         <div class="teams p-8 w-[20vw] flex flex-col items-center sticky top-0">
@@ -125,5 +155,6 @@
 </main>
     
 </body>
-<script src="teams.js"></script>
+<script src="scripts/login.js"></script>
+<script src="scripts/teams.js"></script>
 </html>

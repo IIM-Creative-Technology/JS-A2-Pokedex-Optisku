@@ -1,6 +1,6 @@
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-FetchAPIPokemon();
+const queryString = window.location.search 
+const urlParams = new URLSearchParams(queryString) 
+FetchAPIPokemon() 
 
 
 
@@ -9,15 +9,15 @@ function FetchAPIPokemon(){
         const id = urlParams.get('id')
         fetch('https://pokeapi.co/api/v2/pokemon/'+id).then(response => response.json()).then(response =>{
         // console.log(response)
-        DisplayImagePokemon(response);
+        DisplayImagePokemon(response) 
         changeToShinySingle(response)
-        GetTypes(response.types);
+        GetTypes(response.types) 
         Getinfo(response)
-        GetStats(response.stats);
+        GetStats(response.stats) 
         WeightAndHeight(response)
         getAttackMoves(response)
     })
-    };
+    } 
     
 }
 
@@ -73,7 +73,7 @@ function DisplayImagePokemon(response){
         let newimage = document.createElement("img")
         newimage.src = response.sprites.front_default
         newimage.className ='w-60 h-auto pokemon_image_url'
-        div_image.appendChild(newimage);
+        div_image.appendChild(newimage) 
 }
 function WeightAndHeight(response){
     let div_wh = document.getElementsByClassName('pokemon_wh')[0]
@@ -129,13 +129,13 @@ function GetTypes(response){
         let div_types = document.getElementsByClassName('pokemon_type')[0]
         alltypes = document.createElement("p")
         alltypes.textContent += type.type.name
-        TypeEffect(type.type.url);
+        TypeEffect(type.type.url) 
         alltypes.className ="py-2 px-4 border-2 border-black rounded-full"
         div_types.appendChild(alltypes)
         
         typesColors(alltypes)
         
-    });
+    }) 
     
 }
 function TypeEffect(response){
@@ -162,7 +162,7 @@ function GetDamageRelation(damage_relation,damage_relation_div){
 
 
 
-    });
+    }) 
     
     
         
@@ -191,13 +191,26 @@ function Getcolor(value){
     else return "cool"
 }
 
-const pressed = []
-const secretCode = 'fusion!'
+const pressede = []
+const fusionCode = 'fusion!'
 window.addEventListener('keyup', (e) => {
   console.log(e.key)
-  pressed.push(e.key)
-  pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length)
-  if (pressed.join('').includes(secretCode)) {
+  pressede.push(e.key)
+  pressede.splice(-fusionCode.length - 1, pressede.length - fusionCode.length)
+  if (pressede.join('').includes(fusionCode)) {
     window.location.href ="https://aegide.github.io/"
   }
 })
+
+
+const fetchRandom = async () => {
+    response.forEach(res => {
+        showPokemon(response)
+
+        genTitle.innerText = pokemon.name
+        pokeContainer.style.display = 'block'
+        pokeContainer.style.width = '20%'
+    })
+    changeToShiny(responses)
+}
+

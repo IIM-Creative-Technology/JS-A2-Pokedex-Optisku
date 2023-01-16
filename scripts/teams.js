@@ -1,19 +1,80 @@
-const pokemon_in_team = [1,2,3,4,5,6]
+let team= ""
+const pokemon_in_team = GetEquipe()
+function GetEquipe(){
+    utilisateurConnecte = JSON.parse(localStorage.getItem('utilisateurConnecte')) || [] 
+    const queryString = window.location.search 
+    const urlParams = new URLSearchParams(queryString) 
+    const id_equipe = urlParams.get('id_equipe')
+    len = getTeamLenght(id_equipe)
+    table_pokemon = []
+    for (let i =0; i < len; i++){
+        id = getPokeId(i, id_equipe) 
+        table_pokemon.push(id)
+        console.log(table_pokemon)
+    }
+    return table_pokemon
+
+}
+function getTeamLenght(numb){
+    let i = 0 
+    if(numb === "1"){
+        team = utilisateurConnecte.equipes.equipe1 
+    }else if(numb === "2"){
+        team = utilisateurConnecte.equipes.equipe2 
+    }else if(numb === "3"){
+        team = utilisateurConnecte.equipes.equipe3 
+    }else if(numb === "4"){
+        team = utilisateurConnecte.equipes.equipe4 
+    }else if(numb === "5"){
+        team = utilisateurConnecte.equipes.equipe5 
+    }else if(numb === "6"){
+        team = utilisateurConnecte.equipes.equipe6 
+    }else{
+        console.log('error') 
+    }
+    return team.length
+    
+    
+    
+}
+function getPokeId(i, numb){
+    //console.log(utilisateurConnecte) 
+    if(numb === "1"){
+        pokeId = utilisateurConnecte.equipes.equipe1[i] 
+    }else if(numb === "2"){
+        pokeId = utilisateurConnecte.equipes.equipe2[i] 
+    }else if(numb === "3"){
+        pokeId = utilisateurConnecte.equipes.equipe3[i] 
+    }else if(numb === "4"){
+        pokeId = utilisateurConnecte.equipes.equipe4[i] 
+    }else if(numb === "5"){
+        pokeId = utilisateurConnecte.equipes.equipe5[i] 
+    }else if(numb === "6"){
+        pokeId = utilisateurConnecte.equipes.equipe6[i] 
+    } else{
+        console.log('error') 
+    }
+    return pokeId 
+}
+
+
+
 
 let  alltypesinteams = new Array
 let alltypes = document.createElement("p")
 let div_types = document.getElementsByClassName('pokemon_type')[0]
 let stats_moyenne = [0,0,0,0,0,0]
-FetchAPIPokemon(pokemon_in_team);
+FetchAPIPokemon(pokemon_in_team) 
 x=0
+
 
 
 function FetchAPIPokemon(pokemon_in_team){
         pokemon_in_team.forEach(pokemon_id =>{
             fetch('https://pokeapi.co/api/v2/pokemon/'+pokemon_id).then(response => response.json()).then(response =>{
-        DisplayImagePokemon(response);
-        GetTypes(response.types);
-        stats_moyenne = GetStats(response.stats);
+        DisplayImagePokemon(response) 
+        GetTypes(response.types) 
+        stats_moyenne = GetStats(response.stats) 
         Affichermoyenne(stats_moyenne,response.stats)
         
         })
@@ -22,7 +83,7 @@ function FetchAPIPokemon(pokemon_in_team){
     
     
     div_types.appendChild(alltypes)
-    };
+    } 
 function Affichermoyenne(stats_moyenne,all_stats){
     i=0
     x++
@@ -61,7 +122,7 @@ function DisplayImagePokemon(response){
         let div_image = document.getElementsByClassName('pokemon_image')[0]
         let newimage = document.createElement("img")
         newimage.src = response.sprites.front_default
-        div_image.appendChild(newimage);
+        div_image.appendChild(newimage) 
 }
 
 
@@ -108,9 +169,9 @@ function typesColors(e){
 
 function GetTypes(response){
     response.forEach(type => {
-        TypeEffect(type.type.url);
-        alltypesinteams.indexOf(type.type.name) === -1 ? alltypesinteams.push(type.type.name) : console.log("This item already exists");
-    });
+        TypeEffect(type.type.url) 
+        alltypesinteams.indexOf(type.type.name) === -1 ? alltypesinteams.push(type.type.name) : console.log("This item already exists") 
+    }) 
     alltypes.textContent = ""
     let length_alltypesinteams = alltypesinteams.length
     for(let i = 0; i<4;i++){
@@ -142,7 +203,7 @@ function GetDamageRelation(damage_relation,damage_relation_div){
 
         typesColors(typedamage)
 
-    });
+    }) 
 }
 function GetStats(stats){
     i=0
